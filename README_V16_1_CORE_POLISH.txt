@@ -1,0 +1,1 @@
+KAYN v16.1 Core Polish: mejora el editor v16 con panel propiedades avanzado, despiece con pesos, sincronización 3D, estados de módulo y pulido visual.

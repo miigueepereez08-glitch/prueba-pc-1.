@@ -1,0 +1,1 @@
+KAYN v11.8: añade /vista-3d.html con vista 3D conectada al editor y despiece automático CSV. No toca contabilidad Foto PRO.

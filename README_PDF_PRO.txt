@@ -1,0 +1,1 @@
+KAYN v12.2: añade PDF profesional dentro de Vista 3D + Despiece. Incluye logo, obra, cliente, vista 3D, resumen y despiece. Usa imprimir/guardar como PDF.

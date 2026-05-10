@@ -1,0 +1,1041 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>KAYN ANDAMIOS PRO</title><link rel="manifest" href="/manifest.json"><link rel="apple-touch-icon" href="/icon-192.png"><meta name="theme-color" content="#f5c400">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><style>
+:root{--yellow:#f5c400;--black:#080808;--red:#c40000;--blue:#1475ff}*{box-sizing:border-box}html,body{overscroll-behavior-y:none;overscroll-behavior-x:none;touch-action:pan-x pan-y}body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#f7f7f7,#ececec);color:#111;min-height:100%;overflow-x:hidden}#splash{position:fixed;inset:0;background:#050505;z-index:99;display:flex;align-items:center;justify-content:center;flex-direction:column;color:white}#splash img{width:190px;max-width:75%;animation:pulse 1s ease-in-out infinite alternate}#splash h1{color:var(--yellow);letter-spacing:1px}@keyframes pulse{from{transform:scale(1);filter:drop-shadow(0 0 0 #f5c400)}to{transform:scale(1.06);filter:drop-shadow(0 0 18px #f5c400)}}header{position:sticky;top:0;z-index:10;background:linear-gradient(135deg,#050505,#1b1b1b);color:white;padding:13px 14px;box-shadow:0 8px 24px #0004;border-bottom:1px solid #2a2a2a}.head{display:flex;gap:10px;align-items:center}.head img{width:48px;height:48px;object-fit:contain}.head h1{margin:0;color:var(--yellow);font-size:20px}.head p{margin:2px 0 0;font-size:12px;color:#ddd}nav{display:flex;gap:8px;overflow:auto;background:#111;padding:10px 9px;box-shadow:inset 0 -1px 0 #333}nav button{white-space:nowrap;background:#222;color:white;border:1px solid #333;border-radius:999px;padding:10px 13px;font-weight:bold;box-shadow:0 2px 8px #0002;transition:.18s transform,.18s background}nav button.active{background:linear-gradient(135deg,var(--yellow),#ffe16a);color:#000;transform:translateY(-1px)}main{max-width:1180px;margin:auto;padding:12px}.tab{display:none}.tab.active{display:block}.card{background:rgba(255,255,255,.97);border:1px solid #e7e7e7;border-radius:24px;padding:16px;margin-bottom:14px;box-shadow:0 12px 36px #00000014;backdrop-filter:blur(8px)}.heroCard{background:linear-gradient(135deg,#050505,#262626);color:white;border:0;position:relative;overflow:hidden}.heroCard h2{color:#f5c400}.proTable th{background:#111!important;color:#f5c400}.proTable td,.proTable th{padding:10px;border-bottom:1px solid #eee}.catRow td{background:#fff5cf;font-weight:bold;color:#755000}.totalRow td{background:#111;color:#f5c400;font-weight:bold}.counterCanvas{width:100%;max-width:760px;border-radius:18px;border:1px solid #ddd;background:#fff}.resultBox{background:#111;color:#f5c400;border-radius:18px;padding:14px;font-size:18px;font-weight:bold}.stockGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.stockCard{border:1px solid #e6e6e6;background:#fff;border-radius:18px;padding:12px;box-shadow:0 4px 18px #0000000c}.stockCard h3{margin:0 0 8px;font-size:15px}.qtyControls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.qtyControls button{min-width:42px}.qtyNumber{font-size:26px;font-weight:900;color:#111;background:#fff5cf;border-radius:14px;padding:8px 14px}.tagAuto{background:#e7f0ff;color:#1454ad;border:1px solid #bcd4ff}.tagWarn{background:#fff2d6;color:#8a5a00;border:1px solid #ffd37a}@media(max-width:650px){.stockGrid{grid-template-columns:1fr}}h2{font-size:18px;margin:0 0 12px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}label{display:block;font-size:12px;color:#555;margin-bottom:4px}input,select,textarea{width:100%;padding:12px;border:1px solid #d4d4d4;border-radius:15px;font-size:16px;background:#fff;box-shadow:inset 0 1px 0 #fff;outline:none}input:focus,select:focus,textarea:focus{border-color:#f5c400;box-shadow:0 0 0 3px #f5c40033}textarea{min-height:70px}button{border:0;border-radius:15px;padding:12px 14px;background:linear-gradient(135deg,#111,#2a2a2a);color:white;font-weight:bold;box-shadow:0 4px 14px #0002;transition:.15s transform}button:active{transform:scale(.98)}.easy{background:#fff9df;border:2px solid #f5c400}.sectionTitle{display:flex;align-items:center;justify-content:space-between;gap:8px}.bigToggle{display:flex;align-items:center;gap:10px;background:#f7f7f7;border:1px solid #ddd;border-radius:14px;padding:12px;font-size:15px}.bigToggle input{width:auto;transform:scale(1.2)}.orange{background:#fff2d6;color:#8a5a00;border:1px solid #ffd37a}button.yellow{background:linear-gradient(135deg,var(--yellow),#ffdf57);color:#000}button.light{background:#eee;color:#111}button.red{background:#b00000}.row{display:flex;gap:8px;flex-wrap:wrap}.metric{background:#fafafa;border:1px solid #eee;border-radius:14px;padding:10px}.metric b{font-size:18px}table{width:100%;border-collapse:collapse;font-size:13px}td,th{border-bottom:1px solid #eee;padding:8px;text-align:left}th{background:#fafafa}#planBox{overflow:hidden;background:#fff;border:1px solid #ddd;border-radius:20px;position:relative;touch-action:none;box-shadow:0 8px 28px #0001}.note{font-size:12px;color:#666}.legend{display:flex;gap:8px;flex-wrap:wrap;font-size:12px;margin-top:8px}.leg{display:inline-flex;align-items:center;gap:5px;background:#f6f6f6;border:1px solid #ddd;border-radius:999px;padding:5px 8px}.sw{width:22px;height:4px;display:inline-block;background:#111}.sw.blue{background:#1475ff}.sw.red{background:#c40000}.sw.yellow{background:#f5c400}.sw.gray{background:#888}.pill{display:inline-block;background:#eee;border-radius:999px;padding:5px 9px;margin:3px;font-size:12px}canvas,svg{max-width:none;background:white;transform-origin:0 0}.viewportHint{font-size:12px;color:#555;margin-top:8px}.viewControls{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.zoomBadge{position:absolute;right:10px;top:10px;background:#111;color:#f5c400;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:bold;z-index:3}.photos{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.photos img{width:100%;height:140px;object-fit:cover;border-radius:12px;border:1px solid #ddd}@media(max-width:650px){.grid,.grid3{grid-template-columns:1fr}main{padding:10px}}@media print{header,nav,.noPrint,button{display:none!important}body{background:white}.card{box-shadow:none;border:0}}
+
+/* KAYN v11.3 INTERFAZ PRO */
+body{background:linear-gradient(180deg,#f7f8fb,#eef0f4)!important;color:#111!important}
+header{background:linear-gradient(135deg,#050505,#202020)!important;box-shadow:0 10px 28px #0006!important;border-bottom:1px solid #333!important}
+header h1{color:#f5c400!important;letter-spacing:.3px!important}
+header img{background:#000!important;border:1px solid #333!important;border-radius:16px!important;padding:4px!important;object-fit:contain!important}
+nav{position:sticky!important;top:0!important;z-index:30!important;display:flex!important;gap:8px!important;overflow-x:auto!important;padding:10px!important;background:rgba(10,10,10,.96)!important;backdrop-filter:blur(10px)!important;border-bottom:1px solid #2b2b2b!important;scrollbar-width:none!important}
+nav::-webkit-scrollbar{display:none!important}
+nav button{flex:0 0 auto!important;border-radius:999px!important;padding:10px 15px!important;background:#242424!important;color:#fff!important;border:1px solid #363636!important;font-weight:800!important;white-space:nowrap!important}
+nav button.active{background:linear-gradient(135deg,#f5c400,#ffe06a)!important;color:#000!important;border-color:#f5c400!important}
+main{max-width:1180px!important;margin:0 auto!important;padding:12px!important}
+.card{background:rgba(255,255,255,.98)!important;border:1px solid #e6e8ec!important;border-radius:24px!important;padding:16px!important;margin-bottom:14px!important;box-shadow:0 12px 34px rgba(16,24,40,.10)!important}
+.card h2{margin-top:0!important;display:flex!important;align-items:center!important;gap:9px!important}
+.card h2:before{content:"";width:8px;height:25px;border-radius:999px;background:linear-gradient(180deg,#f5c400,#9a6500);display:inline-block}
+label{font-weight:800!important;color:#344054!important;font-size:12px!important}
+input,select,textarea{border-radius:15px!important;border:1px solid #d0d5dd!important;background:#fff!important}
+input:focus,select:focus,textarea:focus{outline:none!important;border-color:#f5c400!important;box-shadow:0 0 0 4px rgba(245,196,0,.22)!important}
+button{border-radius:15px!important;font-weight:900!important}
+button.yellow,.yellow{background:linear-gradient(135deg,#f5c400,#ffe06a)!important;color:#000!important}
+button.light,.light{background:#f2f4f7!important;color:#111!important;border:1px solid #d0d5dd!important}
+.grid,.grid3{gap:12px!important}
+table{width:100%!important;border-collapse:separate!important;border-spacing:0!important;overflow:hidden!important;border-radius:16px!important;border:1px solid #e7e7e7!important}
+th{background:#111!important;color:#f5c400!important}
+td,th{padding:10px!important;border-bottom:1px solid #eee!important}
+.kaynTopSummary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}
+.kaynTopCard{background:linear-gradient(135deg,#111,#2a2a2a);color:#fff;border:1px solid #303030;border-radius:22px;padding:14px;box-shadow:0 10px 26px rgba(0,0,0,.22)}
+.kaynTopCard strong{display:block;color:#f5c400;font-size:22px;line-height:1.1}
+.kaynTopCard span{display:block;color:#d5d5d5;font-size:12px;margin-top:5px}
+.kaynIntro{background:#fff8d7;border:1px solid #ffe28a;color:#694800;border-radius:18px;padding:10px 12px;font-size:13px;margin-bottom:14px}
+@media(max-width:800px){.kaynTopSummary{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){main{padding:10px!important}.card{border-radius:20px!important;padding:13px!important}.kaynTopSummary{grid-template-columns:1fr 1fr}.kaynTopCard{padding:12px}.kaynTopCard strong{font-size:18px}}
+
+
+/* KAYN v11.6 CONTABILIDAD FOTO PRO */
+.kaynFotoProGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.kaynFotoProResult{background:#111;color:#f5c400;border-radius:18px;padding:14px;font-weight:900;white-space:pre-wrap;margin-top:10px}
+.kaynFotoProCanvas{width:100%;max-height:360px;background:#fff;border:1px solid #ddd;border-radius:18px;object-fit:contain}
+.kaynFotoProNotice{background:#fff8d7;border:1px solid #ffe28a;color:#694800;border-radius:16px;padding:10px;margin:10px 0;font-size:13px}
+@media(max-width:700px){.kaynFotoProGrid{grid-template-columns:1fr}}
+
+
+/* KAYN v12.5 FUSION PLANOS */
+.kaynPlanosHub{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:14px}
+.kaynPlanosTool{background:linear-gradient(135deg,#111,#252525);border:1px solid #333;border-radius:22px;padding:14px;color:#fff;box-shadow:0 10px 26px rgba(0,0,0,.20)}
+.kaynPlanosTool h3{margin:0 0 6px 0;color:#f5c400;font-size:18px}
+.kaynPlanosTool p{margin:0 0 12px 0;color:#ddd;font-size:13px;line-height:1.35}
+.kaynPlanosTool a{display:inline-block;background:linear-gradient(135deg,#f5c400,#ffe06a);color:#000;font-weight:900;padding:10px 12px;border-radius:14px;text-decoration:none}
+.kaynPlanosTool.secondary a{background:#fff;color:#111}
+.kaynPlanosLegend{background:#fff8d7;border:1px solid #ffe28a;color:#694800;border-radius:18px;padding:10px 12px;font-size:13px;margin-bottom:14px}
+.kaynOldPlanoBadge{display:inline-block;background:#111;color:#f5c400;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:900;margin-bottom:8px}
+@media(max-width:800px){.kaynPlanosHub{grid-template-columns:1fr}}
+
+
+/* KAYN v12.8 DESKTOP RESPONSIVE */
+@media (min-width:1024px){
+ body{background:#eef0f4!important}
+ header{position:fixed!important;top:0!important;left:0!important;right:0!important;height:76px!important;z-index:80!important;display:flex!important;align-items:center!important;padding:10px 18px!important}
+ nav{position:fixed!important;top:76px!important;left:0!important;bottom:0!important;width:248px!important;height:calc(100vh - 76px)!important;z-index:70!important;display:flex!important;flex-direction:column!important;gap:8px!important;padding:14px!important;overflow-y:auto!important;overflow-x:hidden!important;background:linear-gradient(180deg,#0b0b0b,#181818)!important;border-right:1px solid #2d2d2d!important;box-shadow:8px 0 24px rgba(0,0,0,.18)!important}
+ nav button{width:100%!important;text-align:left!important;border-radius:16px!important;padding:13px 14px!important;font-size:15px!important;white-space:normal!important}
+ main{margin-left:248px!important;padding:96px 22px 28px 22px!important;max-width:none!important;width:calc(100% - 248px)!important}
+ .card{border-radius:22px!important;padding:18px!important;margin-bottom:18px!important}
+ .grid,.grid3,.kaynFotoProGrid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ canvas,svg{max-width:100%!important}
+ #stage,#view{height:72vh!important}
+ table{font-size:14px!important}
+}
+.kaynDesktopWelcome{display:none}
+@media (min-width:1024px){
+ .kaynDesktopWelcome{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:14px;margin-bottom:18px}
+ .kaynDesktopWelcomeCard{background:linear-gradient(135deg,#111,#2a2a2a);color:#fff;border:1px solid #303030;border-radius:22px;padding:16px;box-shadow:0 12px 28px rgba(0,0,0,.18)}
+ .kaynDesktopWelcomeCard h2,.kaynDesktopWelcomeCard h3{margin:0;color:#f5c400}
+ .kaynDesktopWelcomeCard p{margin:8px 0 0;color:#ddd;font-size:13px}
+}
+
+
+/* KAYN v15 DESKTOP CLEAN ARCHITECTURE */
+:root{--v15-yellow:#ffc107;--v15-yellow2:#ffdd55;--v15-bg:#070809;--v15-panel:#111315;--v15-panel2:#171a1d;--v15-line:#2b3036;--v15-text:#f6f7f9;--v15-muted:#9aa3ad;--v15-sidebar:260px;--v15-top:84px;--v15-right:340px}
+@media(min-width:1024px){
+ html,body{background:#070809!important;color:var(--v15-text)!important}
+ body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle at 20% 0%,rgba(255,193,7,.12),transparent 28%),linear-gradient(180deg,#0b0d0f,#050505 78%)}
+ header{position:fixed!important;top:0!important;left:0!important;right:0!important;height:var(--v15-top)!important;z-index:100!important;display:grid!important;grid-template-columns:300px 1fr 230px!important;align-items:center!important;gap:16px!important;padding:10px 18px!important;background:linear-gradient(180deg,#0f1113,#090a0b)!important;border-bottom:1px solid #272c32!important;box-shadow:0 10px 30px rgba(0,0,0,.42)!important}
+ header:before{content:"KAYN ANDAMIOS PRO";color:var(--v15-yellow);font-size:20px;font-weight:950;letter-spacing:.4px}
+ header img,header h1,header .brand{display:none!important}
+ header:after{content:"v15 · Desktop Clean";justify-self:end;color:#fff;background:#15181b;border:1px solid #333941;border-radius:999px;padding:10px 14px;font-weight:900;font-size:13px}
+ .kaynV15TopStats{display:grid!important;grid-template-columns:repeat(5,minmax(110px,1fr));gap:10px}
+ .kaynV15TopStats .stat{background:linear-gradient(180deg,#171a1d,#111315);border:1px solid #2b3036;border-radius:12px;padding:9px 12px}
+ .kaynV15TopStats span{display:block;color:var(--v15-muted);font-size:11px;margin-bottom:3px}.kaynV15TopStats b{color:#fff;font-size:15px}
+ nav{position:fixed!important;top:var(--v15-top)!important;left:0!important;bottom:0!important;width:var(--v15-sidebar)!important;height:calc(100vh - var(--v15-top))!important;z-index:90!important;display:flex!important;flex-direction:column!important;gap:8px!important;padding:14px!important;background:linear-gradient(180deg,#111315,#08090a)!important;border-right:1px solid #292e34!important;overflow-y:auto!important;box-shadow:10px 0 28px rgba(0,0,0,.32)!important}
+ nav:before{content:"ARQUITECTURA v15";color:#9aa3ad;font-size:11px;letter-spacing:1.2px;font-weight:900;margin:4px 0 6px 4px}
+ nav button{width:100%!important;min-height:48px!important;text-align:left!important;border-radius:10px!important;padding:12px 14px!important;background:transparent!important;color:#e8edf3!important;border:1px solid transparent!important;font-weight:850!important;box-shadow:none!important}
+ nav button:hover{background:#181b1f!important;border-color:#303640!important;transform:none!important}
+ nav button.active{background:linear-gradient(135deg,var(--v15-yellow),var(--v15-yellow2))!important;color:#080808!important;border-color:var(--v15-yellow)!important;box-shadow:0 12px 26px rgba(255,193,7,.26)!important}
+ nav:after{content:"Flujo limpio\A Dashboard → Proyecto → Despiece → Contabilidad IA → Ajustes";white-space:pre-line;margin-top:auto;background:#0d0f11;border:1px solid #262b31;border-radius:12px;padding:12px;color:#dfe5eb;font-size:12px;line-height:1.65}
+ main{margin-left:var(--v15-sidebar)!important;padding:calc(var(--v15-top) + 16px) calc(var(--v15-right) + 30px) 26px 18px!important;width:auto!important;max-width:none!important;min-height:100vh!important;background:transparent!important}
+ main:after{content:"PANEL PROPIEDADES";position:fixed;top:calc(var(--v15-top) + 16px);right:14px;width:var(--v15-right);height:calc(100vh - var(--v15-top) - 32px);background:linear-gradient(180deg,#15181b,#0f1113);border:1px solid #2b3036;border-radius:14px;color:#fff;padding:18px;box-shadow:0 16px 42px rgba(0,0,0,.40);z-index:20;font-weight:950}
+ main:before{content:"Estado\A Proyecto activo\A Sistema europeo\A\A Estructura limpia\A 1 Dashboard\A 2 Proyecto\A 3 Despiece\A 4 Contabilidad IA\A 5 Ajustes\A\A Prioridad\A Estabilidad + claridad";white-space:pre-line;position:fixed;top:calc(var(--v15-top) + 74px);right:34px;width:calc(var(--v15-right) - 40px);color:#dce2e8;font-size:13px;line-height:1.8;z-index:21}
+ .kaynDesktopWelcome{display:none!important}
+ .kaynV15Dashboard{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;margin-bottom:18px}
+ .kaynV15Hero{background:linear-gradient(135deg,#15181b,#0e1012);border:1px solid #2b3036;border-radius:16px;padding:18px;box-shadow:0 14px 36px rgba(0,0,0,.30)}
+ .kaynV15Hero h2{margin:0;color:#fff;font-size:26px}.kaynV15Hero p{color:var(--v15-muted);margin:8px 0 0}
+ .kaynV15Quick{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.kaynV15Quick a{background:linear-gradient(180deg,#171a1d,#111315);border:1px solid #2b3036;border-radius:14px;padding:14px;color:#fff;text-decoration:none;font-weight:900}.kaynV15Quick a.primary{background:linear-gradient(135deg,var(--v15-yellow),var(--v15-yellow2));color:#090909}
+ .card{background:linear-gradient(180deg,#15181b,#101214)!important;border:1px solid #2a2f35!important;color:#f6f7f9!important;border-radius:14px!important;box-shadow:0 14px 36px rgba(0,0,0,.28)!important;padding:16px!important}
+ .card h2,.card h3{color:#fff!important}.card h2:before{background:var(--v15-yellow)!important}.note,.card p,label{color:#aab3bd!important}
+ input,select,textarea{background:#0d0f11!important;border:1px solid #303640!important;color:#fff!important;border-radius:9px!important}
+ button{border-radius:9px!important}button.yellow,.yellow{background:linear-gradient(135deg,var(--v15-yellow),var(--v15-yellow2))!important;color:#090909!important}button.light,.light{background:#191d21!important;color:#fff!important;border:1px solid #303640!important}
+ table{background:#101214!important;border:1px solid #2a2f35!important;color:#fff!important}th{background:#08090a!important;color:var(--v15-yellow)!important}td{background:#121519!important;color:#e8edf3!important;border-color:#282e35!important}
+ canvas,svg{background:#090b0d!important;border:1px solid #2b3036!important;border-radius:12px!important}.tab.active{max-width:none!important}
+}
+@media(max-width:1023px){.kaynV15TopStats,.kaynV15Dashboard{display:none!important}}
+
+</style><link rel="icon" href="/logo.png">
+</head><body><div id="splash">
+  <div class="splashLogo">
+    <img src="/logo.png" alt="KAYN ANDAMIOS">
+    <div class="animRule"></div>
+    <div class="animScaffold">
+      <span></span><span></span><span></span><span></span>
+      <i></i><i></i>
+    </div>
+  </div>
+  <h1>KAYN ANDAMIOS</h1>
+  <p>Medidor PRO de montaje</p>
+</div><header><div class="head"><img src="/logo.png"><div><h1>KAYN ANDAMIOS</h1><p>Plano · despiece · pedido · obras</p></div></div></header><nav class="noPrint"><button class="active" onclick="tab('obra',this)">Obra</button><button onclick="tab('plano',this)">Plano</button><button onclick="tab('despiece',this)">Despiece</button><button onclick="tab('pedido',this)">Pedido</button><button onclick="tab('fotos',this)">Fotos</button><button onclick="tab('contabilidad',this)">Contabilidad</button><button onclick="tab('guardar',this)">Guardar</button><button onclick="tab('informe',this)">Informe/PDF</button><button class="tabBtn" data-tab="despiece">Despiece</button></nav><main>
+
+<div class="card">
+<h2>v17 Core Engine Foundation</h2>
+<p class="note">Nuevo motor central global para módulos, selección y sincronización.</p>
+<div class="row">
+<a href="/editor-modulos.html" style="display:inline-block;background:linear-gradient(135deg,#ffc107,#ffdd55);color:#090909;font-weight:900;padding:12px 16px;border-radius:10px;text-decoration:none">Abrir Core Engine</a>
+</div>
+</div>
+
+
+<div class="card">
+  <h2>v16.1 Core Polish</h2>
+  <p class="note">Pulido profesional: panel propiedades avanzado, despiece con pesos, sincronización 3D y mejor estado visual.</p>
+  <div class="row">
+    <a href="/editor-modulos.html" style="display:inline-block;background:linear-gradient(135deg,#ffc107,#ffdd55);color:#090909;font-weight:900;padding:12px 16px;border-radius:10px;text-decoration:none">Abrir Core Editor PRO v16.1</a>
+  </div>
+</div>
+
+
+<div class="card">
+  <h2>v16 Core Professional System</h2>
+  <p class="note">Nuevo núcleo profesional: toolbox izquierda, plano 2D central, 3D integrado y panel de propiedades funcional.</p>
+  <div class="row">
+    <a href="/editor-modulos.html" style="display:inline-block;background:linear-gradient(135deg,#ffc107,#ffdd55);color:#090909;font-weight:900;padding:12px 16px;border-radius:10px;text-decoration:none">Abrir Core Editor PRO</a>
+  </div>
+</div>
+
+
+<div class="kaynV15Dashboard">
+  <div class="kaynV15Hero">
+    <h2>KAYN Desktop Clean Architecture</h2>
+    <p>Primera fase real de reorganización profesional: Dashboard, Proyecto, Despiece, Contabilidad IA y Ajustes.</p>
+  </div>
+  <div class="kaynV15Quick">
+    <a class="primary" href="/editor-modulos.html">Core Editor PRO</a>
+    <a href="/vista-3d.html">3D integrado</a>
+    <a href="#despiece">Despiece</a>
+    <a href="#contabilidad">Contabilidad IA</a>
+  </div>
+</div>
+
+
+<div class="kaynDesktopWelcome">
+  <div class="kaynDesktopWelcomeCard"><h2>KAYN ANDAMIOS PRO</h2><p>Modo ordenador activo: menú lateral, pantalla amplia y trabajo más cómodo con ratón.</p></div>
+  <div class="kaynDesktopWelcomeCard"><h3>Planos</h3><p>Diseño, módulos y 3D.</p></div>
+  <div class="kaynDesktopWelcomeCard"><h3>Despiece</h3><p>Material, PDF y CSV.</p></div>
+  <div class="kaynDesktopWelcomeCard"><h3>Contabilidad</h3><p>Foto PRO e inventario.</p></div>
+</div>
+
+<div class="card"><h2>Editor interactivo de módulos</h2><p class="note">Fase 2: mover módulos en 2D con snap magnético, zoom y guardado independiente.</p><a href="/editor-modulos.html" style="display:inline-block;background:linear-gradient(135deg,#f5c400,#ffe06a);color:#000;font-weight:900;padding:12px 16px;border-radius:15px;text-decoration:none">Abrir editor de módulos PRO</a></div>
+
+<div class="kaynTopSummary">
+  <div class="kaynTopCard"><strong id="kaynSumSistema">KAYN</strong><span>Sistema seleccionado</span></div>
+  <div class="kaynTopCard"><strong id="kaynSumModulos">0</strong><span>Módulos calculados</span></div>
+  <div class="kaynTopCard"><strong id="kaynSumNiveles">0</strong><span>Niveles</span></div>
+  <div class="kaynTopCard"><strong id="kaynSumArea">0 m²</strong><span>Superficie aprox.</span></div>
+</div>
+<div class="kaynIntro">Interfaz PRO ordenada: mismas funciones, misma base estable, todo más limpio y con resumen rápido.</div>
+
+<section id="obra" class="tab active">
+ <div class="card heroCard">
+  <h2>Resumen PRO</h2>
+  <p style="margin:0;color:#ddd">Plano, despiece, pedido profesional y conteo por foto en una sola app.</p>
+  <div class="row" style="margin-top:12px">
+    <button class="yellow" onclick="safeCalc();tab('plano',document.querySelector('nav button:nth-child(2)'))">Calcular y ver plano</button>
+    <button class="light" onclick="tab('pedido',document.querySelector('nav button:nth-child(4)'))">Ver pedido</button>
+  </div>
+ </div><div class="card"><h2>Datos</h2><div class="grid"><div><label>Obra</label><input id="obraNombre" placeholder="Nombre de obra"></div><div><label>Cliente</label><input id="cliente" placeholder="Cliente"></div><div><label>Dirección</label><input id="direccion" placeholder="Dirección"></div><div><label>Sistema</label><select id="sistema" onchange="calc()"><option value="europeo">Andamio europeo</option><option value="ulma">Multidireccional ULMA</option></select></div></div></div><div class="card"><h2>Medidas</h2><div class="grid3"><div><label>Largo A / fachada principal (m)</label><input id="largoA" type="number" step="0.01" value="12"></div><div><label>Largo B / esquina (m)</label><input id="largoB" type="number" step="0.01" value="0"></div><div><label>Altura (m)</label><input id="alto" type="number" step="0.01" value="8"></div><div><label>Ancho andamio (m)</label><input id="anchoAndamio" type="number" step="0.01" value="0.70"></div><div><label>Altura nivel (m)</label><input id="altoNivel" type="number" step="0.01" value="2"></div><div><label>Precio €/m²</label><input id="precio" type="number" step="0.01" value="0"></div></div><h2 style="margin-top:14px">Módulos disponibles</h2><div class="grid3"><label><input type="checkbox" class="medida" value="3.00" checked> 3,00 m</label><label><input type="checkbox" class="medida" value="2.50" checked> 2,50 m</label><label><input type="checkbox" class="medida" value="2.00" checked> 2,00 m</label><label><input type="checkbox" class="medida" value="1.50" checked> 1,50 m</label><label><input type="checkbox" class="medida" value="1.00" checked> 1,00 m</label><label><input type="checkbox" class="medida" value="0.70" checked> 0,70 m</label></div></div>
+<div class="card"><h2>Opciones montaje</h2><div class="grid"><label><input id="esquinaL" type="checkbox" onchange="calc()"> Andamio en esquina L</label><label><input id="doble" type="checkbox" onchange="calc()"> Andamio doble / doble ancho junto</label><label><input id="torreCarga" type="checkbox" onchange="calc()"> Torre de carga ULMA estándar</label><label><input id="medioArranque" type="checkbox" onchange="calc()"> Medio marco 1 m / vertical 1 m</label><label><input id="malla" type="checkbox" onchange="calc()"> Malla</label><label><input id="rodapies" type="checkbox" checked onchange="calc()"> Rodapiés</label><label><input id="barrasInterior" type="checkbox" checked onchange="calc()"> Barras interiores</label><label><input id="cierresLaterales" type="checkbox" checked onchange="calc()"> Cierres laterales</label></div><div class="grid3" style="margin-top:12px"><div><label>Marcos de paso</label><select id="marcosPaso" onchange="calc()"><option value="no">No</option><option value="si">Sí</option></select></div><div><label>Cantidad marcos/módulos paso</label><input id="marcosPasoCant" type="number" value="0" placeholder="0 = todo"></div><div><label>Altura libre necesaria (m)</label><input id="alturaLibreNecesaria" type="number" step="0.01" value="2.20"></div><div><label>Husillo regulado (m)</label><input id="alturaHusillo" type="number" step="0.01" value="0.30"></div><div><label>Verticales ULMA</label><select id="verticalMode" onchange="calc()"><option value="auto">Automático</option><option value="manual">Manual</option></select></div><div><label>Acceso lado</label><select id="accesoLado"><option value="A">Tramo A</option><option value="B">Tramo B</option></select></div>
+   <div><label>Acceso módulo Nº</label><input id="accesoModulo" type="number" value="1"></div>
+   <div><label>Tipo acceso</label><select id="tipoAcceso"><option value="escalera">Escalera + plataforma</option><option value="torre">Torre de acceso</option></select></div><div><label>Vert. ULMA 0,50 manual</label><input id="v050" type="number" value="0"></div><div><label>Vert. ULMA 1,00 manual</label><input id="v100" type="number" value="0"></div><div><label>Vert. ULMA 1,50 manual</label><input id="v150" type="number" value="0"></div><div><label>Vert. ULMA 2,00 manual</label><input id="v200" type="number" value="0"></div><div><label>Vert. ULMA 3,00 manual</label><input id="v300" type="number" value="0"></div><div><label>Hueco esquina opcional (m)</label><input id="huecoEsquina" type="number" step="0.01" value="0"></div></div></div>
+<div class="card"><h2>Ménsulas por módulo</h2><div class="grid3"><div><label>Lado</label><select id="mensulaLado"><option value="A">Tramo A</option><option value="B">Tramo B</option></select></div><div><label>Módulo Nº o “todo”</label><input id="mensulaModulo" placeholder="1, 2, 3 o todo" value="1"></div><div><label>Medida</label><select id="mensulaMedida"><option value="0.30">0,30 m</option><option value="0.50">0,50 m</option><option value="0.70">0,70 m</option><option value="1.00">1,00 m</option><option value="1.50">1,50 m</option><option value="2.00">2,00 m</option><option value="2.50">2,50 m</option><option value="3.00">3,00 m</option></select></div><div><label>Niveles</label><select id="mensulaNiveles"><option value="todos">Todos</option><option value="superior">Solo arriba</option><option value="manual">Cantidad manual</option></select></div><div><label>Cantidad manual</label><input id="mensulaCantidad" type="number" value="0"></div></div><div class="row" style="margin-top:10px"><button class="light" onclick="addMensula()">Añadir ménsula</button><button class="red" onclick="mensulas=[];calc()">Borrar ménsulas</button></div><div id="mensulaList" class="note" style="margin-top:8px"></div></div>
+<div class="card"><h2>Accesorios manuales</h2><div class="grid3"><div><label>Amarres manuales</label><input id="amarresManual" type="number" value="0"></div><div><label>Abrazaderas giratorias</label><input id="abrazGiratorias" type="number" value="0"></div><div><label>Abrazaderas fijas extra</label><input id="abrazFijasExtra" type="number" value="0"></div><div><label>Tubos lisos 0,50 m</label><input id="tubo050" type="number" value="0"></div><div><label>Tubos lisos 1,00 m</label><input id="tubo100" type="number" value="0"></div><div><label>Puentes barandilla</label><input id="puentesBarandilla" type="number" value="0"></div><div><label>Niveladores marco europeo</label><input id="niveladores" type="number" value="0"></div><div><label>Adaptadores espiga extra</label><input id="adaptadoresExtra" type="number" value="0"></div></div><label style="margin-top:10px">Observaciones</label><textarea id="obs" placeholder="Notas de obra"></textarea><div class="row" style="margin-top:12px"><button class="yellow" onclick="safeCalc()">Calcular / actualizar</button></div><div id="errorBox" class="note" style="color:#b00000;margin-top:8px"></div></div><div class="card"><h2>Resultado rápido</h2><div id="resumen" class="grid"></div></div></section>
+<section id="plano" class="tab"><div class="card"><h2>Planos y visualización</h2><p class="note">Todo el diseño y visualización 2D/3D se gestiona aquí. El cálculo de material está en el apartado Despiece.</p></div>
+
+<div class="kaynPlanosLegend">
+  <b>Planos unificado:</b> se conserva el plano rápido clásico porque tiene accesos, plataformas de escalera y diagonales claras; además se conecta con Editor Módulos PRO y Vista 3D Unificada.
+</div>
+
+<div class="kaynPlanosHub">
+  <div class="kaynPlanosTool">
+    <h3>Plano rápido clásico</h3>
+    <p>Usa el plano actual para ver accesos, plataformas de escalera, diagonales y montaje rápido.</p>
+    <a href="#planoMontajeRapido">Usar plano rápido</a>
+  </div>
+  <div class="kaynPlanosTool">
+    <h3>Editor Módulos PRO</h3>
+    <p>Mueve módulos, usa snap magnético, marca marcos de paso y prepara la estructura.</p>
+    <a href="/editor-modulos.html">Abrir editor</a>
+  </div>
+  <div class="kaynPlanosTool">
+    <h3>Vista 3D Unificada</h3>
+    <p>Genera por módulos o por largo × ancho × alto con calidad Ligero, Detallado o Ultra.</p>
+    <a href="/vista-3d.html">Abrir 3D</a>
+  </div>
+</div>
+
+
+
+<div class="card noPrint"><h2>Plano de montaje</h2><div class="row"><button class="yellow" onclick="draw2D()">Plano 2D detallado</button><button onclick="draw3D()">3D girable</button><button onclick="drawRealista()">Vista realista</button><button class="light" onclick="resetView()">Centrar / reset zoom</button><button class="light" onclick="downloadSVG()">Descargar SVG</button></div>
+  <div class="viewControls">
+    <button class="light" onclick="zoomBy(1.2)">Zoom +</button>
+    <button class="light" onclick="zoomBy(0.85)">Zoom -</button>
+    <span class="pill">2D: arrastra para mover · pinza para zoom</span>
+    <span class="pill">3D: arrastra para girar · pinza para zoom</span>
+  </div><p class="note">Plano rápido orientativo. Se conserva para accesos, plataformas de escalera, diagonales y vista de montaje. No sustituye proyecto técnico ni manual del fabricante.</p></div><div id="planBox" style="min-height:520px"><div id="zoomBadge" class="zoomBadge">100%</div><svg id="svg" width="1000" height="720"></svg><canvas id="canvas3d" width="1000" height="720" style="display:none"></canvas><canvas id="canvasReal" width="1000" height="720" style="display:none"></canvas></div><p class="viewportHint">Consejo: en plano 2D puedes arrastrar para mover y pellizcar para acercar. En 3D, arrastra para girar y pellizca para acercar.</p></section><section id="despiece" class="tab"><div class="card"><h2>Despiece</h2><div id="despieceBox"></div></div></section><section id="pedido" class="tab"><div class="card"><h2>Hoja de pedido</h2><div class="row noPrint"><button class="yellow" onclick="downloadCSV()">Exportar pedido CSV</button><button class="light" onclick="exportPedidoExcel()">Exportar pedido Excel</button><button class="light" onclick="printPedido()">Imprimir / PDF pedido</button></div><div id="pedidoBox"></div></div></section><section id="fotos" class="tab">
+
+<div class="card">
+  <h2>Conteo de material</h2>
+  <p class="note">El contador antiguo se ha eliminado. Para contar material por foto usa ahora <b>Contabilidad → Contabilidad Foto PRO</b>.</p>
+</div>
+
+<div class="card"><h2>Fotos de obra</h2><input id="fotoInput" type="file" accept="image/*" multiple onchange="addPhotos(event)"><div class="row"><button class="light" onclick="document.getElementById('fotoInput').click()">Añadir fotos</button><button class="red" onclick="photos=[];renderPhotos()">Borrar fotos</button></div><div id="photos" class="photos"></div></div>
+</section>
+
+
+<section id="contabilidad" class="tab">
+
+<div class="card" id="kaynFotoProCard">
+  <h2>Contabilidad Foto PRO</h2>
+  <div class="kaynFotoProNotice">
+    Conteo aproximado profesional por foto. No usa IA de pago. Selecciona material, escribe la medida y guarda el resultado en una hoja.
+  </div>
+
+  <div class="kaynFotoProGrid">
+    <div>
+      <label>Material</label>
+      <select id="fotoProMaterial">
+        <option>Barras</option>
+        <option>Diagonales</option>
+        <option>Marcos</option>
+        <option>Medio marcos</option>
+        <option>Plataformas normales</option>
+        <option>Plataformas escalera</option>
+        <option>Rodapiés</option>
+        <option>Husillos</option>
+        <option>Barandillas</option>
+        <option>ULMA verticales</option>
+        <option>ULMA horizontales</option>
+        <option>Ménsulas</option>
+      </select>
+    </div>
+    <div>
+      <label>Medida / clasificación</label>
+      <input id="fotoProMedida" placeholder="Ej: 3.00 m, 2.50 m, 0.73 x 2.00">
+    </div>
+    <div>
+      <label>Cantidad real si la sabes</label>
+      <input id="fotoProReal" type="number" placeholder="Opcional">
+    </div>
+  </div>
+
+  <br>
+  <input id="fotoProInput" type="file" accept="image/*" onchange="fotoProLoad(event)">
+  <br><br>
+
+  <div class="row">
+    <button class="yellow" onclick="fotoProContar()">Aproximar cantidad</button>
+    <button class="light" onclick="fotoProAjustar(1)">+1</button>
+    <button class="light" onclick="fotoProAjustar(-1)">−1</button>
+    <button class="yellow" onclick="fotoProGuardar()">Guardar en hoja</button>
+    <button class="light" onclick="fotoProExportCSV()">Exportar hoja CSV</button>
+    <button class="light" onclick="fotoProLimpiar()">Borrar hoja</button>
+  </div>
+
+  <div id="fotoProResultado" class="kaynFotoProResult">Sube una foto para empezar.</div>
+  <canvas id="fotoProCanvas" class="kaynFotoProCanvas" width="900" height="520"></canvas>
+
+  <h3>Hoja de contabilidad por foto</h3>
+  <div id="fotoProTabla"></div>
+</div>
+
+
+ <div class="card heroCard">
+  <h2>Contabilidad asistida de material</h2>
+  <p style="margin:0;color:#ddd">La foto propone una cantidad; tú corriges con +/− y queda guardado en inventario real.</p>
+ </div>
+ 
+</section>
+
+<section id="guardar" class="tab"><div class="card"><h2>Guardar obras</h2><div class="row"><button class="yellow" onclick="saveWork()">Guardar obra</button><button class="light" onclick="newWork()">Nueva obra</button></div><div id="saved"></div></div></section><section id="informe" class="tab"><div class="card"><h2>Informe / PDF</h2><div class="row noPrint"><button class="yellow" onclick="printPDF()">Crear PDF</button><button class="light" onclick="copyReport()">Copiar informe</button></div><div id="report"></div></div></section>
+</main><script>
+setTimeout(()=>{$('splash').style.display='none'},1200);if('serviceWorker' in navigator){navigator.serviceWorker.register('./service-worker.js')}const $=id=>document.getElementById(id); const num=id=>{let e=$(id); return e?parseFloat(e.value||0):0}; const int=id=>{let e=$(id); return e?parseInt(e.value||0):0};
+
+// Helpers seguros para evitar que un campo roto bloquee el botón Calcular
+function safeEl(id){return document.getElementById(id)}
+function safeVal(id, def=''){let e=safeEl(id); return e ? e.value : def}
+function safeNum(id, def=0){let v=parseFloat(safeVal(id, def)); return isNaN(v)?def:v}
+function safeInt(id, def=0){let v=parseInt(safeVal(id, def)); return isNaN(v)?def:v}
+function safeChecked(id){let e=safeEl(id); return !!(e && e.checked)}
+
+let viewMode='2d';
+let panX=0, panY=0, zoom=1;
+let activePointers=new Map();
+let lastPinchDist=null;
+let lastDragPoint=null;
+function activeViewEl(){
+  if(viewMode==='3d') return $('canvas3d');
+  if(viewMode==='real') return $('canvasReal');
+  return $('svg');
+}
+function applyView(){
+  const el=activeViewEl();
+  ['svg','canvas3d','canvasReal'].forEach(id=>{
+    const e=$(id); if(e) e.style.transform='';
+  });
+  if(el){
+    el.style.transform=`translate(${panX}px, ${panY}px) scale(${zoom})`;
+  }
+  const b=$('zoomBadge'); if(b)b.textContent=Math.round(zoom*100)+'%';
+}
+function resetView(){
+  panX=0; panY=0; zoom=1; rx=-.45; ry=.65; applyView();
+  if(viewMode==='3d') render3D(false);
+  if(viewMode==='real') render3D(true);
+}
+function zoomBy(factor, cx=500, cy=360){
+  const old=zoom;
+  zoom=Math.max(.35,Math.min(4,zoom*factor));
+  const k=zoom/old;
+  panX=cx-(cx-panX)*k;
+  panY=cy-(cy-panY)*k;
+  applyView();
+}
+function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y)}
+function setupViewportGestures(){
+ const box=$('planBox'); if(!box || box.dataset.gestures==='1')return; box.dataset.gestures='1';
+ box.addEventListener('pointerdown',e=>{
+   box.setPointerCapture?.(e.pointerId);
+   activePointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+   if(activePointers.size===1) lastDragPoint={x:e.clientX,y:e.clientY};
+   if(activePointers.size===2){
+     const pts=[...activePointers.values()];
+     lastPinchDist=dist(pts[0],pts[1]);
+   }
+ });
+ box.addEventListener('pointermove',e=>{
+   if(!activePointers.has(e.pointerId))return;
+   const prev=activePointers.get(e.pointerId);
+   activePointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+   if(activePointers.size===2){
+     const pts=[...activePointers.values()];
+     const d=dist(pts[0],pts[1]);
+     if(lastPinchDist){
+       const rect=box.getBoundingClientRect();
+       zoomBy(d/lastPinchDist, ((pts[0].x+pts[1].x)/2)-rect.left, ((pts[0].y+pts[1].y)/2)-rect.top);
+     }
+     lastPinchDist=d;
+     return;
+   }
+   if(activePointers.size===1 && lastDragPoint){
+     const dx=e.clientX-lastDragPoint.x, dy=e.clientY-lastDragPoint.y;
+     if(viewMode==='2d'){
+       panX+=dx; panY+=dy; applyView();
+     }else{
+       ry+=dx*.01; rx+=dy*.01; 
+       if(viewMode==='3d') render3D(false);
+       if(viewMode==='real') render3D(true);
+     }
+     lastDragPoint={x:e.clientX,y:e.clientY};
+   }
+ });
+ function end(e){activePointers.delete(e.pointerId); lastPinchDist=null; lastDragPoint=null;}
+ box.addEventListener('pointerup',end); box.addEventListener('pointercancel',end); box.addEventListener('pointerleave',end);
+ box.addEventListener('wheel',e=>{e.preventDefault(); zoomBy(e.deltaY<0?1.12:.9,e.offsetX,e.offsetY)}, {passive:false});
+}
+
+let mensulas=[], photos=[], countedPhotoPieces={}, stockItems=[], currentId=null, last={A:[],B:[],levels:0,breakdown:{},normalPlatforms:{},stairPlatforms:{},rodFront:{},rodLat:{},area:0,modCount:0};function tab(id,b){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));if(b)b.classList.add('active'); if(id==='plano')draw2D(); if(id==='despiece')renderBreakdown(); if(id==='pedido')renderPedido(); if(id==='informe')renderReport(); if(id==='guardar')renderSaved()}function measures(){return [...document.querySelectorAll('.medida:checked')].map(x=>parseFloat(x.value)).sort((a,b)=>b-a)}function compose(L){let ms=measures(), rem=L, arr=[]; for(let m of ms){while(rem+0.001>=m){arr.push(m); rem-=m}} if(rem>0.05){let m=[...ms].reverse().find(v=>v>=rem)||ms[ms.length-1]||1; arr.push(m)} return arr}function addItem(o,k,q){q=Math.ceil(Number(q)||0); if(q>0)o[k]=(o[k]||0)+q}function countBy(arr){let o={}; arr.forEach(x=>{let k=Number(x).toFixed(2)+' m'; o[k]=(o[k]||0)+1}); return o}function addMensula(){mensulas.push({lado:$('mensulaLado').value, modulo:$('mensulaModulo').value.trim()||'1', medida:num('mensulaMedida'), niveles:$('mensulaNiveles').value, cantidad:int('mensulaCantidad')}); calc()}function mensulaQty(m,levels,modCount){let mods=m.modulo.toLowerCase()==='todo'?modCount:1; if(m.niveles==='manual')return Math.max(0,m.cantidad); if(m.niveles==='superior')return mods; return mods*levels}function renderMensulas(){let box=$('mensulaList'); if(!mensulas.length){box.innerHTML='Sin ménsulas.'; return} box.innerHTML=mensulas.map((m,i)=>`<span class="pill">${m.lado} · mód. ${m.modulo} · ${m.medida.toFixed(2)}m · ${m.niveles} <button class="light" style="padding:2px 6px" onclick="mensulas.splice(${i},1);calc()">x</button></span>`).join('')}
+
+function safeCalc(){
+  try{
+    const eb=document.getElementById('errorBox');
+    if(eb) eb.textContent='';
+    calc();
+  }catch(err){
+    console.error(err);
+    const eb=document.getElementById('errorBox');
+    if(eb) eb.textContent='Error al calcular: '+err.message;
+    alert('Hay un error al calcular: '+err.message);
+  }
+}
+
+function addDiagonalsByMeasure(b, mods, levels, prefix){
+  mods.forEach((m,i)=>{
+    let q = (i%3===0 || (i+1)==safeInt('accesoModulo',1)) ? levels : 0;
+    if(q>0) addItem(b, `${prefix} ${m.toFixed(2)} m`, q);
+  });
+}
+
+function calc(){let A=compose(num('largoA')), useB=$('esquinaL').checked && num('largoB')>0, B=useB?compose(num('largoB')):[], levels=Math.max(1,Math.ceil(num('alto')/(safeNum('altoNivel',2)||2))), sys=$('sistema').value;let modCount=A.length+B.length, b={}, acceso=Math.max(1,safeInt('accesoModulo',1)||1);let area=(num('largoA')+(useB?num('largoB'):0))*num('alto');addItem(b,'Husillos iguales', modCount*2+2);addItem(b,'Tablas / durmientes', modCount*2+2);let amarres=int('amarresManual')>0?int('amarresManual'):Math.ceil((num('largoA')+(useB?num('largoB'):0))/4)*Math.ceil(num('alto')/4);addItem(b,'Amarres', amarres); addItem(b,'Abrazaderas fijas', amarres+int('abrazFijasExtra'));
+ addItem(b,'Inicios para primeras diagonales', Math.max(2, Math.ceil(modCount/3)*2));if(sys==='europeo'){addItem(b,'Marcos europeos', (modCount+1)*levels);if($('medioArranque').checked){addItem(b,'Medio marcos 1 m', modCount+1);addItem(b,'Barra exterior para medio marco 1 m', modCount);}let barrasExt = modCount*levels*2;
+// Medio marco: primer nivel solo una barra exterior por módulo
+if($('medioArranque').checked){
+   barrasExt -= modCount;
+}
+// Marcos de paso: primer nivel lleva 2 exteriores igualmente (sin reducción)
+if($('marcosPaso').value==='si' && $('medioArranque').checked){
+   let ladoPaso=safeVal('marcosPasoLado','A');
+   let inicioPaso=Math.max(1,safeInt('marcosPasoInicio',1));
+   let qA=(ladoPaso==='A'||ladoPaso==='ambos')?Math.max(0,(safeInt('marcosPasoCant',0)>0?safeInt('marcosPasoCant',0):(A.length-inicioPaso+1))):0;
+   let qB=(ladoPaso==='B'||ladoPaso==='ambos')?Math.max(0,(safeInt('marcosPasoCant',0)>0?safeInt('marcosPasoCant',0):(B.length-inicioPaso+1))):0;
+   barrasExt += (qA+qB);
+}
+addItem(b,'Barandillas exteriores', barrasExt);if($('barrasInterior').checked){
+   let interiores = modCount*Math.max(0,levels-1)*2;
+   // Marcos de paso: en primer nivel también llevan 2 barras interiores
+   if($('marcosPaso').value==='si'){
+      let ladoPaso=safeVal('marcosPasoLado','A');
+      let inicioPaso=Math.max(1,safeInt('marcosPasoInicio',1));
+      let qA=(ladoPaso==='A'||ladoPaso==='ambos')?Math.max(0,(safeInt('marcosPasoCant',0)>0?safeInt('marcosPasoCant',0):(A.length-inicioPaso+1))):0;
+      let qB=(ladoPaso==='B'||ladoPaso==='ambos')?Math.max(0,(safeInt('marcosPasoCant',0)>0?safeInt('marcosPasoCant',0):(B.length-inicioPaso+1))):0;
+      interiores += (qA+qB)*2;
+   }
+   addItem(b,'Barras interiores', interiores);
+}addDiagonalsByMeasure(b, A.concat(B), levels, 'Diagonal europea');if($('cierresLaterales').checked)addItem(b,'Cierres laterales', levels*2);addItem(b,'Abrazaderas giratorias', int('abrazGiratorias'));addItem(b,'Tubos lisos 0,50 m', int('tubo050')); addItem(b,'Tubos lisos 1,00 m', int('tubo100'));addItem(b,'Puentes de barandilla', int('puentesBarandilla')); addItem(b,'Niveladores de altura marco europeo', int('niveladores'))} else {if($('verticalMode').value==='manual'){addItem(b,'Verticales ULMA 0,50 m',int('v050')); addItem(b,'Verticales ULMA 1,00 m',int('v100')); addItem(b,'Verticales ULMA 1,50 m',int('v150')); addItem(b,'Verticales ULMA 2,00 m',int('v200')); addItem(b,'Verticales ULMA 3,00 m',int('v300'))} else {addItem(b,'Verticales ULMA 2,00 m',(modCount+1)*(levels+1));if($('medioArranque').checked)addItem(b,'Verticales ULMA 1,00 m arranque',modCount+1)}let horizExt = modCount*(levels+1)*2;
+if($('medioArranque').checked){ horizExt -= modCount; }
+if($('marcosPaso').value==='si' && $('medioArranque').checked){
+   let ladoPaso=safeVal('marcosPasoLado','A');
+   let inicioPaso=Math.max(1,safeInt('marcosPasoInicio',1));
+   let qA=(ladoPaso==='A'||ladoPaso==='ambos')?Math.max(0,(safeInt('marcosPasoCant',0)>0?safeInt('marcosPasoCant',0):(A.length-inicioPaso+1))):0;
+   let qB=(ladoPaso==='B'||ladoPaso==='ambos')?Math.max(0,(safeInt('marcosPasoCant',0)>0?safeInt('marcosPasoCant',0):(B.length-inicioPaso+1))):0;
+   horizExt += (qA+qB);
+}
+addItem(b,'Horizontales exteriores ULMA',horizExt);if($('barrasInterior').checked)addItem(b,'Horizontales interiores ULMA',modCount*Math.max(0,levels-1)*2);addDiagonalsByMeasure(b, A.concat(B), levels, 'Diagonal ULMA');if($('torreCarga').checked){addItem(b,'Torre de carga ULMA estándar',1);addItem(b,'Vigas de carga ULMA',levels*2);addItem(b,'Verticales torre carga ULMA',4*(levels+1));addItem(b,'Horizontales torre carga ULMA',8*levels);addItem(b,'Plataformas torre de carga',levels)}}if($('marcosPaso').value==='si'){
+   let ladoPaso=safeVal('marcosPasoLado','A');
+   let inicioPaso=Math.max(1,safeInt('marcosPasoInicio',1)||1);
+   let qA = (ladoPaso==='A'||ladoPaso==='ambos') ? Math.max(0, (int('marcosPasoCant')>0?int('marcosPasoCant'):(A.length-inicioPaso+1))) : 0;
+   let qB = (ladoPaso==='B'||ladoPaso==='ambos') ? Math.max(0, (int('marcosPasoCant')>0?int('marcosPasoCant'):(B.length-inicioPaso+1))) : 0;
+   let q=qA+qB;
+   addItem(b,sys==='europeo'?'Marcos de paso':'Módulos de paso inferior ULMA',q);
+   addItem(b,'Adaptadores de espiga',q+int('adaptadoresExtra'));
+ } else addItem(b,'Adaptadores de espiga extra',int('adaptadoresExtra'));if($('doble').checked)addItem(b,sys==='ulma'?'Kit doble ancho ULMA':'Kit andamio doble europeo',modCount*levels);if(useB)addItem(b,'Piezas unión esquina L',levels*2);if($('malla').checked)addItem(b,'Malla aproximada m²',area);mensulas.forEach(m=>{let mc=m.lado==='A'?A.length:B.length; addItem(b,'Ménsulas '+m.medida.toFixed(2)+' m', mensulaQty(m,levels,mc))});let allMods=A.concat(B), normal={}, stair={}; allMods.forEach((m,i)=>{let k=m.toFixed(2)+' m'; normal[k]=(normal[k]||0)+levels; if(i+1===acceso){stair[k]=(stair[k]||0)+levels; normal[k]=Math.max(0,normal[k]-levels)}});if(allMods[acceso-1]){let ak=allMods[acceso-1].toFixed(2)+' m'; normal[ak]=(normal[ak]||0)+2;} // plataformas normales extra de la medida del módulo de acceso en primer nivel
+ let rodFront=countBy(allMods.flatMap(m=>Array(levels).fill(m))), rodLat={}; rodLat[(num('anchoAndamio')||0.7).toFixed(2)+' m']=levels*2*(useB?2:1);last={A,B,levels,breakdown:b,normalPlatforms:normal,stairPlatforms:stair,rodFront,rodLat,area,modCount};renderSummary(); renderMensulas(); renderBreakdown(); renderPedido(); renderReport(); draw2D()}
+function renderSummary(){let sys=$('sistema').value==='ulma'?'ULMA':'Europeo'; $('resumen').innerHTML=[['Sistema',sys],['Módulos',last.modCount],['Niveles',last.levels],['Superficie',last.area.toFixed(2)+' m²'],['Husillos',last.breakdown['Husillos iguales']||0],['Marcos paso',(last.breakdown['Marcos de paso']||last.breakdown['Módulos de paso inferior ULMA']||0)],['Presupuesto',(last.area*num('precio')).toFixed(2)+' €']].map(x=>`<div class="metric"><span>${x[0]}</span><br><b>${x[1]}</b></div>`).join('')}function table(o){let h='<table><tr><th>Pieza</th><th>Cantidad</th></tr>'; Object.entries(o||{}).forEach(([k,v])=>h+=`<tr><td>${k}</td><td>${v}</td></tr>`); return h+'</table>'}function unifiedDespieceRows(){
+ let rows=[];
+ const addCat=(name)=>rows.push({cat:name});
+ const addObj=(obj,prefix='')=>Object.entries(obj||{}).forEach(([k,v])=>rows.push({pieza:prefix+k,cantidad:v}));
+ addCat('Estructura y seguridad');
+ addObj(last.breakdown);
+ addCat('Plataformas / chapas normales');
+ addObj(last.normalPlatforms,'Plataforma ');
+ addCat('Plataformas de escalera / trampilla');
+ addObj(last.stairPlatforms,'Plataforma escalera ');
+ addCat('Rodapiés frontales');
+ addObj(last.rodFront,'Rodapié frontal ');
+ addCat('Rodapiés laterales');
+ addObj(last.rodLat,'Rodapié lateral ');
+ addCat('Conteo por foto añadido');
+ addObj(countedPhotoPieces);
+ return rows;
+}
+function renderBreakdown(){
+ const rows=unifiedDespieceRows();
+ let total=0;
+ let html='<table class="proTable"><tr><th>Pieza</th><th>Cantidad</th></tr>';
+ rows.forEach(r=>{
+   if(r.cat) html+=`<tr class="catRow"><td colspan="2">${r.cat}</td></tr>`;
+   else {total+=Number(r.cantidad)||0; html+=`<tr><td>${r.pieza}</td><td>${r.cantidad}</td></tr>`;}
+ });
+ html+=`<tr class="totalRow"><td>Total unidades orientativas</td><td>${total}</td></tr></table>`;
+ $('despieceBox').innerHTML=html;
+}
+
+function draw2D(){
+ viewMode='2d'; setupViewportGestures(); $('svg').style.display='block';$('canvas3d').style.display='none';$('canvasReal').style.display='none';
+ let svg=$('svg'), W=1000,H=720; svg.innerHTML='';
+ let baseY=520, baseX=95, scale=42, levelH=48, sys=$('sistema').value;
+ let accessSide=safeVal('accesoLado','A');
+ let accessMod=Math.max(1,safeInt('accesoModulo',1)||1);
+ let accessType=safeVal('tipoAcceso','escalera');
+ const line=(x1,y1,x2,y2,c='#111',w=2,d='')=>svg.insertAdjacentHTML('beforeend',`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${c}" stroke-width="${w}" ${d}/>`); 
+ const rect=(x,y,w,h,fill='none',c='#111',sw=2,d='')=>svg.insertAdjacentHTML('beforeend',`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${fill}" stroke="${c}" stroke-width="${sw}" ${d}/>`); 
+ const text=(x,y,t,s=11,c='#111',anchor='middle')=>svg.insertAdjacentHTML('beforeend',`<text x="${x}" y="${y}" font-size="${s}" fill="${c}" text-anchor="${anchor}">${t}</text>`);
+ svg.insertAdjacentHTML('beforeend',`<defs><pattern id="stairs" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M0 8 L8 0" stroke="#1475ff" stroke-width="1"/></pattern></defs>`);
+ text(30,30,'KAYN ANDAMIOS - Plano de montaje detallado',18,'#111','start');
+ text(30,52,`Sistema: ${sys==='ulma'?'Multidireccional ULMA':'Europeo'} · módulos con medidas · barras · diagonales · acceso`,12,'#555','start');
+
+ function drawRun(mods,orient='H',x0=baseX,y0=baseY,label='A'){
+  let pos=0;
+  mods.forEach((m,i)=>{
+   let len=m*scale;
+   let x=orient==='H'?x0+pos:x0;
+   let y=orient==='H'?y0-last.levels*levelH:y0-pos-len;
+   let w=orient==='H'?len:46;
+   let h=orient==='H'?last.levels*levelH:len;
+   let isAccess=(label===accessSide && i+1===accessMod); let isPasoBase=isMarcoPasoVisible(label,i,mods.length);
+   rect(x,y,w,h,isPasoBase?'rgba(245,196,0,0.15)':(isAccess?'#eef6ff':'none'),isPasoBase?'#f5a400':(isAccess?'#1475ff':'#111'),isPasoBase?4:(isAccess?3:2)); if(isPasoBase){text(x+w/2,y+h-18,'PASO',12,'#9a6500');}
+   if($('doble').checked){
+     let off=orient==='H'?-42:42;
+     if(orient==='H')rect(x,y+off,w,h,'none','#777',1.5,'stroke-dasharray="6 4"');
+     else rect(x+off,y,w,h,'none','#777',1.5,'stroke-dasharray="6 4"');
+   }
+   for(let j=0;j<last.levels;j++){
+     let yy=y0-(j+1)*levelH;
+     if(orient==='H'){
+       // two bars/barandillas visibles per level
+       let isPasoBase = isMarcoPasoVisible(label,i,mods.length);
+       if(j===0){
+         if($('medioArranque').checked && !isPasoBase){
+           line(x,yy+levelH*0.32,x+w,yy+levelH*0.32,'#111',2.4);
+         } else {
+           line(x,yy+levelH*0.20,x+w,yy+levelH*0.20,'#111',2.2);
+           line(x,yy+levelH*0.44,x+w,yy+levelH*0.44,'#111',2.2);
+           if(isPasoBase){
+             line(x,yy+levelH*0.68,x+w,yy+levelH*0.68,'#555',2);
+             line(x,yy+levelH*0.88,x+w,yy+levelH*0.88,'#555',2);
+           }
+         }
+       } else {
+         line(x,yy+levelH*0.32,x+w,yy+levelH*0.32,'#111',1.6);
+         line(x,yy+levelH*0.62,x+w,yy+levelH*0.62,'#111',1.6);
+       }
+       // platform/chapa line
+       line(x,yy+levelH-3,x+w,yy+levelH-3, sys==='ulma'?'#f5c400':'#c40000',4);
+       // diagonal not everywhere: every 3 modules + access
+       
+       // access with stair and platform
+       if(isAccess){
+         rect(x+w*0.15, yy+levelH*0.10, w*0.70, levelH*0.80, 'url(#stairs)', '#1475ff', 2);
+         line(x+w*0.18,yy+levelH*0.85,x+w*0.82,yy+levelH*0.15,'#1475ff',2.5);
+         text(x+w/2,yy+levelH*0.52, accessType==='torre'?'TORRE':'ESC', 10, '#1475ff');
+       }
+     } else {
+       // vertical side B as plan in L
+       line(x+46*0.32, y+pos, x+46*0.32, y+pos, '#111', 1); 
+       // draw horizontal across width of vertical module
+       let y1=y, y2=y+h;
+       line(x+12,y1+i*0,x+12,y2,'#111',1.2);
+       line(x+30,y1,x+30,y2,'#111',1.2);
+       if(isAccess){
+         rect(x+5,y+len*0.15,36,len*0.70,'url(#stairs)','#1475ff',2);
+         line(x+6,y+len*0.85,x+40,y+len*0.15,'#1475ff',2.5);
+         text(x+23,y+len/2,'ESC',10,'#1475ff');
+       } else if(i%3===0) {
+         line(x,y+h,x+w,y,'#777',2);
+       }
+     }
+   }
+   if(orient==='H' && (isAccess || i%3===0)){ line(x+4,y0-4,x+w-4,y,'#777',3); } // DIAGONAL ORIGINAL FULL HEIGHT V9
+   if(orient==='H' && $('medioArranque').checked){ rect(x,y0-levelH*0.5,w,levelH*0.5,'rgba(245,196,0,0.10)','#9a6500'); line(x+4,y0-levelH*0.25,x+w-4,y0-levelH*0.25,'#9a6500',2.5); }
+   // module dimension labels
+   if(orient==='H'){
+     line(x,y0+8,x+w,y0+8,'#444',1,'stroke-dasharray="3 3"');
+     text(x+w/2,y0+24,`${label}${i+1} · ${m.toFixed(2)} m`,11,'#111');
+   } else {
+     line(x-10,y,x-10,y+h,'#444',1,'stroke-dasharray="3 3"');
+     text(x-34,y+h/2,`${label}${i+1}`,10,'#111','middle');
+     text(x+64,y+h/2,`${m.toFixed(2)} m`,10,'#111','start');
+   }
+   // mensulas by side/module
+   let list=mensulas.filter(mm=>mm.lado===label && (String(mm.modulo).toLowerCase()==='todo' || parseInt(mm.modulo)===i+1));
+   list.forEach(mm=>{
+     let levs=mm.niveles==='superior'?[last.levels]:[...Array(last.levels).keys()].map(v=>v+1);
+     if(mm.niveles==='manual')levs=[last.levels];
+     levs.forEach(j=>{
+       let out=mm.medida*35;
+       if(orient==='H'){
+         let yy=y0-(j-.5)*levelH;
+         line(x+w,yy,x+w+out,yy,'#f5c400',5);
+         line(x+w,yy+18,x+w+out,yy,'#b88700',3);
+         rect(x+w+out-5,yy-6,10,12,'#f5c400','#9a6500',1);
+       } else {
+         let xx=x+w+4, yy=y+h/2;
+         line(xx,yy,xx+out,yy,'#f5c400',5);
+         line(xx,yy+18,xx+out,yy,'#b88700',3);
+       }
+     });
+   });
+   pos+=len;
+  });
+ }
+
+ drawRun(last.A,'H',baseX,baseY,'A');
+ if($('esquinaL').checked && last.B.length)drawRun(last.B,'V',baseX-58,baseY,'B');
+ if($('torreCarga').checked && $('sistema').value==='ulma'){
+   let tx=baseX+last.A.reduce((s,m)=>s+m*scale,0)+42;
+   rect(tx,baseY-last.levels*levelH,76,last.levels*levelH,'none','#9a6500',3);
+   for(let j=0;j<last.levels;j++){
+     let yy=baseY-(j+1)*levelH;
+     line(tx,yy+10,tx+76,yy+10,'#9a6500',4);
+     line(tx,yy+levelH-10,tx+76,yy+levelH-10,'#9a6500',4);
+   }
+   text(tx+38,baseY-last.levels*levelH-8,'TORRE CARGA',12,'#9a6500');
+ }
+ // small legend in drawing
+ text(30,H-52,'Barras dobles por nivel · diagonales alternas · diagonal siempre en acceso · plataformas de escalera en azul',12,'#555','start');
+ text(30,H-32,'Rodapiés: rojo europeo / amarillo ULMA. Medidas de módulo indicadas bajo cada paño.',12,'#555','start');
+ drawVisibleDetailsOverlay();
+ applyView();
+}
+
+
+
+function isMarcoPasoVisible(label,idx,total){
+ if(!$('marcosPaso') || $('marcosPaso').value!=='si') return false;
+ let lado=$('marcosPasoLado') ? $('marcosPasoLado').value : 'A';
+ if(!(lado===label || lado==='ambos')) return false;
+ let inicio=Math.max(1,safeInt('marcosPasoInicio',1)||1);
+ let cant=int('marcosPasoCant')>0 ? int('marcosPasoCant') : Math.max(0,total-inicio+1);
+ return (idx+1)>=inicio && (idx+1)<inicio+cant;
+}
+function marcoPasoLabel(){
+ let libre=(safeNum('altoNivel',2)||2)-0.20;
+ let nec=safeNum('alturaLibreNecesaria',2.2)||2.2;
+ let ok=libre>=nec?'CUMPLE':(libre>=nec-0.10?'JUSTO':'NO CUMPLE');
+ return `${libre.toFixed(2)}m libre · ${ok}`;
+}
+
+function drawVisibleDetailsOverlay(){
+ const svg=$('svg');
+ if(!svg || !last || !last.A) return;
+ const baseX=95, baseY=520, scale=42, levelH=48;
+ const sys=$('sistema').value;
+ const accessSide=safeVal('accesoLado','A');
+ const accessMod=Math.max(1,safeInt('accesoModulo',1)||1);
+ const barColor='#111111';
+ const mensColor='#f5c400';
+ const blue='#1475ff';
+ const rodColor=sys==='ulma'?'#f5c400':'#c40000';
+ const add=(s)=>svg.insertAdjacentHTML('beforeend',s);
+ const L=(x1,y1,x2,y2,c=barColor,w=4,d='')=>add(`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${c}" stroke-width="${w}" stroke-linecap="round" ${d}/>`);
+ const R=(x,y,w,h,fill='none',c='#111',sw=2,d='')=>add(`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${fill}" stroke="${c}" stroke-width="${sw}" ${d}/>`);
+ const T=(x,y,t,size=12,c='#111')=>add(`<text x="${x}" y="${y}" font-size="${size}" fill="${c}" font-weight="bold" text-anchor="middle">${t}</text>`);
+ add(`<g id="visible-details-overlay">`);
+ add(`<text x="30" y="75" font-size="13" fill="#111" font-weight="bold">DETALLES VISIBLES: doble barra/barandilla, diagonales, acceso y ménsulas</text>`);
+ function run(mods,label,orient,x0,y0){
+   let pos=0;
+   mods.forEach((m,i)=>{
+     const len=m*scale;
+     const isAccess=(label===accessSide && (i+1)===accessMod);
+     if(orient==='H'){
+       const x=x0+pos, yTop=y0-last.levels*levelH, w=len, h=last.levels*levelH;
+       // strong module outline
+       R(x,yTop,w,h,'none',isAccess?blue:'#111',isAccess?4:2);
+       const isPaso=isMarcoPasoVisible(label,i,mods.length);
+       if(isPaso){
+         R(x+5,yTop+last.levels*levelH-levelH+6,w-10,levelH-12,'rgba(245,196,0,0.22)','#f5a400',4,'stroke-dasharray="8 4"');
+         T(x+w/2,yTop+last.levels*levelH-levelH/2,'MARCO PASO',12,'#9a6500');
+         T(x+w/2,yTop+last.levels*levelH-8,marcoPasoLabel(),9,'#9a6500');
+       }
+       for(let j=0;j<last.levels;j++){
+         const yy=y0-(j+1)*levelH;
+         // two bars per level, always on top
+         L(x+2, yy+levelH*0.34, x+w-2, yy+levelH*0.34, barColor, 3.5);
+         if(j>0) L(x+2, yy+levelH*0.64, x+w-2, yy+levelH*0.64, barColor, 3.5);
+         // rodapie clear
+         L(x+2, yy+levelH-5, x+w-2, yy+levelH-5, rodColor, 5);
+         // diagonals: access always, else alternate
+         
+         // access platform/stair, on top
+         if(isAccess){
+           R(x+w*0.15, yy+6, w*0.70, levelH-12, 'rgba(20,117,255,0.10)', blue, 3);
+           L(x+w*0.18, yy+levelH-10, x+w*0.82, yy+10, blue, 4);
+           // stair steps
+           for(let s=0;s<5;s++){
+             let sx=x+w*0.25+s*w*0.10, sy=yy+levelH-12-s*7;
+             L(sx,sy,sx+w*0.16,sy,blue,1.6);
+           }
+           T(x+w/2, yy+levelH/2+4, 'ACCESO', 11, blue);
+         }
+       }
+       // module measure big
+       if(isAccess || i%3===0){ L(x+5,y0-5,x+w-5,yTop+5,isAccess?blue:'#777',4); } // DIAGONAL FULL HEIGHT V9
+       if($('medioArranque').checked){ R(x,y0-levelH*0.5,w,levelH*0.5,'rgba(245,196,0,0.10)','#9a6500',2,'stroke-dasharray="5 4"'); L(x+3,y0-levelH*0.25,x+w-3,y0-levelH*0.25,'#9a6500',3); T(x+w/2,y0-levelH*0.12,'MEDIO 1m',9,'#9a6500'); }
+       T(x+w/2,y0+25,`${label}${i+1} · ${m.toFixed(2)} m`,12,'#111');
+       // mensulas top overlay
+       const ms=mensulas.filter(mm=>mm.lado===label && (String(mm.modulo).toLowerCase()==='todo' || parseInt(mm.modulo)===(i+1)));
+       ms.forEach(mm=>{
+         let levels=mm.niveles==='superior'?[last.levels]:[...Array(last.levels).keys()].map(v=>v+1);
+         if(mm.niveles==='manual') levels=[last.levels];
+         levels.forEach(j=>{
+           const cy=y0-(j-.5)*levelH;
+           const out=Math.max(24,mm.medida*48);
+           // real-ish bracket: horizontal arm, diagonal brace, end plate
+           L(x+w,cy,x+w+out,cy,mensColor,8);
+           L(x+w,cy+22,x+w+out,cy,mensColor,4);
+           R(x+w+out-7,cy-10,14,20,mensColor,'#9a6500',2);
+           add(`<circle cx="${x+w}" cy="${cy}" r="5" fill="#9a6500"/>`);
+           T(x+w+out/2,cy-12,`M ${mm.medida.toFixed(2)}`,10,'#9a6500');
+         });
+       });
+     } else {
+       const x=x0, y=y0-pos-len, w=50, h=len;
+       R(x,y,w,h,'none','#111',2);
+       const isPaso=isMarcoPasoVisible(label,i,mods.length);
+       if(isPaso){
+         R(x+3,y+5,w-6,h-10,'rgba(245,196,0,0.22)','#f5a400',4,'stroke-dasharray="8 4"');
+         T(x+25,y+h/2-8,'PASO',11,'#9a6500');
+         T(x+25,y+h/2+8,marcoPasoLabel(),8,'#9a6500');
+       }
+       // side B bars shown vertical/side representation
+       L(x+16,y+4,x+16,y+h-4,barColor,3.5);
+       L(x+34,y+4,x+34,y+h-4,barColor,3.5);
+       if(i%3===0) L(x+4,y+h-4,x+w-4,y+4,'#777',3);
+       if(isAccess){
+         R(x+5,y+h*0.15,40,h*0.70,'rgba(20,117,255,0.10)',blue,3);
+         L(x+8,y+h*0.85,x+42,y+h*0.15,blue,4);
+         T(x+25,y+h/2,'ACC',10,blue);
+       }
+       T(x+86,y+h/2,`${label}${i+1} ${m.toFixed(2)}m`,11,'#111');
+       const ms=mensulas.filter(mm=>mm.lado===label && (String(mm.modulo).toLowerCase()==='todo' || parseInt(mm.modulo)===(i+1)));
+       ms.forEach(mm=>{
+         const cy=y+h/2, out=Math.max(24,mm.medida*48);
+         L(x+w,cy,x+w+out,cy,mensColor,8);
+         L(x+w,cy+22,x+w+out,cy,mensColor,4);
+         R(x+w+out-7,cy-10,14,20,mensColor,'#9a6500',2);
+         T(x+w+out/2,cy-12,`M ${mm.medida.toFixed(2)}`,10,'#9a6500');
+       });
+     }
+     pos+=len;
+   });
+ }
+ run(last.A,'A','H',baseX,baseY);
+ if($('esquinaL').checked && last.B && last.B.length) run(last.B,'B','V',baseX-68,baseY);
+ add(`</g>`);
+}
+
+let rx=-.45, ry=.65, drag=false, lastP=null;function draw3D(){ viewMode='3d'; setupViewportGestures(); $('svg').style.display='none';$('canvasReal').style.display='none';$('canvas3d').style.display='block'; applyView(); render3D(false)}function drawRealista(){ viewMode='real'; setupViewportGestures(); $('svg').style.display='none';$('canvas3d').style.display='none';$('canvasReal').style.display='block'; applyView(); render3D(true)}function render3D(real=false){let c=real?$('canvasReal'):$('canvas3d'), ctx=c.getContext('2d'), W=c.width,H=c.height; ctx.clearRect(0,0,W,H); ctx.fillStyle=real?'#eaf3ff':'#fff'; ctx.fillRect(0,0,W,H);let scale=30, base=[180,530], sys=$('sistema').value, d=num('anchoAndamio')||.7;function P(x,y,z){let cy=Math.cos(ry),sy=Math.sin(ry),cx=Math.cos(rx),sx=Math.sin(rx);let x1=x*cy+z*sy,z1=-x*sy+z*cy,y1=y*cx-z1*sx;let sc=25/(1+(y*sx+z1*cx)/50);return [base[0]+x1*sc,base[1]-y1*sc]}function L(a,b,col='#222',w=real?4:2){let A=P(...a),B=P(...b);ctx.beginPath();ctx.moveTo(A[0],A[1]);ctx.lineTo(B[0],B[1]);ctx.strokeStyle=col;ctx.lineWidth=w;ctx.lineCap='round';ctx.stroke()}function run(mods,dir=[1,0],off=[0,0],label='A'){let pos=0; let xs=[0]; mods.forEach(m=>{pos+=m;xs.push(pos)}); for(let i=0;i<xs.length;i++)for(let z of [0,d])L([off[0]+dir[0]*xs[i],0,off[1]+dir[1]*xs[i]+z],[off[0]+dir[0]*xs[i],last.levels*2,off[1]+dir[1]*xs[i]+z]); for(let j=0;j<=last.levels;j++)for(let i=0;i<mods.length;i++){let a=xs[i],b=xs[i+1],y=j*2;L([off[0]+dir[0]*a,y,off[1]+dir[1]*a],[off[0]+dir[0]*b,y,off[1]+dir[1]*b]);L([off[0]+dir[0]*a,y,off[1]+dir[1]*a+d],[off[0]+dir[0]*b,y,off[1]+dir[1]*b+d],'#555',2); if(j>0){L([off[0]+dir[0]*a,y-.1,off[1]+dir[1]*a],[off[0]+dir[0]*b,y-.1,off[1]+dir[1]*b],sys==='ulma'?'#f5c400':'#c40000',4); L([off[0]+dir[0]*a,y-1.2,off[1]+dir[1]*a],[off[0]+dir[0]*b,y-1.2,off[1]+dir[1]*b],'#111',2); L([off[0]+dir[0]*a,y-.7,off[1]+dir[1]*a],[off[0]+dir[0]*b,y-.7,off[1]+dir[1]*b],'#111',2); if(i%3===0||i+1==safeInt('accesoModulo',1))L([off[0]+dir[0]*a,y-2,off[1]+dir[1]*a],[off[0]+dir[0]*b,y,off[1]+dir[1]*b],i+1==safeInt('accesoModulo',1)?'#1475ff':'#777',3); if(i+1==safeInt('accesoModulo',1)){L([off[0]+dir[0]*(a+b)/2,y-2,off[1]+dir[1]*(a+b)/2],[off[0]+dir[0]*(a+b)/2,y,off[1]+dir[1]*(a+b)/2+d],'#1475ff',4)}}} mensulas.filter(m=>m.lado===label).forEach(mm=>{let idx=mm.modulo.toLowerCase()==='todo'?0:Math.max(0,parseInt(mm.modulo)-1), start=xs[idx]||0,end=mm.modulo.toLowerCase()==='todo'?xs[xs.length-1]:(xs[idx+1]||start+1), mid=(start+end)/2; let levs=mm.niveles==='superior'?[last.levels]:[...Array(last.levels).keys()].map(v=>v+1); if(mm.niveles==='manual')levs=[last.levels]; levs.forEach(j=>{let y=j*2-1; L([off[0]+dir[0]*mid,y,off[1]+dir[1]*mid+d],[off[0]+dir[0]*mid,y,off[1]+dir[1]*mid+d+mm.medida],'#f5c400',real?10:7); L([off[0]+dir[0]*mid,y-1,off[1]+dir[1]*mid+d],[off[0]+dir[0]*mid,y,off[1]+dir[1]*mid+d+mm.medida],'#b88700',real?6:4)})})}ctx.fillStyle='#111';ctx.font='16px Arial';ctx.fillText(real?'Vista realista orientativa':'Vista 3D girable',30,30);run(last.A,[1,0],[0,0],'A'); if($('esquinaL').checked&&last.B.length)run(last.B,[0,-1],[0,0],'B'); if($('doble').checked)run(last.A,[1,0],[0,d+.75],'A'); if($('torreCarga').checked&&sys==='ulma'){ctx.fillStyle='#9a6500';ctx.fillText('Torre carga',740,60)}}function pos(e){let t=e.touches?e.touches[0]:e;return{x:t.clientX,y:t.clientY}}
+function renderPedido(){
+ const rows=unifiedDespieceRows();
+ let obra=$('obraNombre').value||'Sin obra', cliente=$('cliente').value||'', sistema=$('sistema').value==='ulma'?'Multidireccional ULMA':'Andamio europeo';
+ let html=`<div style="display:flex;align-items:center;gap:14px;margin-bottom:12px"><img src="/logo.png" style="height:72px"><div><h2 style="margin:0">Hoja de pedido profesional</h2><p style="margin:4px 0;color:#555"><b>Obra:</b> ${obra} · <b>Cliente:</b> ${cliente} · <b>Sistema:</b> ${sistema}</p></div></div>`;
+ html+='<table class="proTable"><tr><th>Grupo / pieza</th><th>Cantidad</th><th>Revisado</th></tr>';
+ rows.forEach(r=>{
+   if(r.cat) html+=`<tr class="catRow"><td colspan="3">${r.cat}</td></tr>`;
+   else html+=`<tr><td>${r.pieza}</td><td>${r.cantidad}</td><td>☐</td></tr>`;
+ });
+ html+='</table><p class="note">Pedido orientativo generado desde el plan de montaje. Revisar siempre antes de cargar o pedir material.</p>';
+ $('pedidoBox').innerHTML=html;
+}
+function downloadCSV(){
+ const rows=[['KAYN ANDAMIOS - Hoja de pedido profesional'],['Obra',$('obraNombre').value||'Sin obra'],['Cliente',$('cliente').value||''],['Sistema',$('sistema').value==='ulma'?'Multidireccional ULMA':'Europeo'],[],['Grupo/Pieza','Cantidad','Revisado']];
+ unifiedDespieceRows().forEach(r=>{
+   if(r.cat) rows.push([r.cat,'','']);
+   else rows.push([r.pieza,r.cantidad,'']);
+ });
+ let csv=rows.map(r=>r.map(c=>`"${String(c).replaceAll('"','""')}"`).join(';')).join('\n');
+ let a=document.createElement('a');
+ a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+ a.download='pedido-profesional-kayn-'+(($('obraNombre').value||'obra').replaceAll(' ','-'))+'.csv';
+ a.click();
+}
+
+
+function exportPedidoExcel(){
+ const rows=[['KAYN ANDAMIOS - Hoja de pedido profesional'],['Obra',$('obraNombre').value||'Sin obra'],['Cliente',$('cliente').value||''],['Sistema',$('sistema').value==='ulma'?'Multidireccional ULMA':'Europeo'],[],['Grupo/Pieza','Cantidad','Revisado']];
+ unifiedDespieceRows().forEach(r=>{ if(r.cat) rows.push([r.cat,'','']); else rows.push([r.pieza,r.cantidad,'']); });
+ let content='<html><head><meta charset="UTF-8"></head><body><table border="1">';
+ rows.forEach(r=>{content+='<tr>'+r.map(c=>'<td>'+String(c).replaceAll('&','&amp;').replaceAll('<','&lt;')+'</td>').join('')+'</tr>';});
+ content+='</table></body></html>';
+ let a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([content],{type:'application/vnd.ms-excel;charset=utf-8'})); a.download='pedido-kayn-'+(($('obraNombre').value||'obra').replaceAll(' ','-'))+'.xls'; a.click();
+}
+function printPedido(){
+ renderPedido();
+ let w=window.open('', '_blank');
+ w.document.write('<html><head><title>Pedido KAYN</title></head><body style="font-family:Arial;padding:20px">'+$('pedidoBox').innerHTML+'</body></html>');
+ w.document.close(); w.focus(); w.print();
+}
+
+function downloadSVG(){let a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([$('svg').outerHTML],{type:'image/svg+xml'})); a.download='plano-kayn.svg'; a.click()}function reportText(){return `KAYN ANDAMIOS\nObra: ${$('obraNombre').value||''}\nCliente: ${$('cliente').value||''}\nSistema: ${$('sistema').value}\nSuperficie: ${last.area.toFixed(2)} m²\nMódulos: ${last.modCount}\nNiveles: ${last.levels}\nObservaciones:\n${$('obs').value||''}\n\nPlano: primer nivel solo con barras exteriores; diagonales completas por paño y separadas por medida; acceso con plataforma de escalera; medidas de módulos y marcos de paso marcados.\n\nNota: medición orientativa. Revisar montaje según normativa, fabricante, terreno, cargas y técnico competente.`}function renderReport(){renderBreakdown();$('report').innerHTML=`<div style="display:flex;gap:12px;align-items:center"><img src="/logo.png" style="height:70px"><div><h2>KAYN ANDAMIOS</h2><p>Informe de montaje</p></div></div><pre style="white-space:pre-wrap;font-family:Arial">${reportText()}</pre><h3>Despiece</h3>${$('despieceBox').innerHTML}<h3>Fotos</h3><div class="photos">${photos.map(p=>`<img src="${p}">`).join('')}</div>`}function printPDF(){renderReport();window.print()}function copyReport(){navigator.clipboard.writeText(reportText()).then(()=>alert('Informe copiado'))}function addPhotos(e){[...e.target.files].forEach(f=>{let r=new FileReader();r.onload=ev=>{photos.push(ev.target.result);renderPhotos()};r.readAsDataURL(f)});e.target.value=''}function renderPhotos(){$('photos').innerHTML=photos.map(p=>`<img src="${p}">`).join('')}
+let counterImage=null, counterLastCount=0;
+
+
+
+
+
+
+
+
+const stockMeasureMap={
+ "Plataforma escalera":["1.00 m","1.50 m","2.00 m","2.50 m","3.00 m"],
+ "Plataforma normal":["0.70 m","1.00 m","1.50 m","2.00 m","2.50 m","3.00 m"],
+ "Rodapié":["0.73 m","1.00 m","1.50 m","2.00 m","2.50 m","3.00 m"],
+ "Barra / larguero":["0.73 m","1.00 m","1.50 m","2.00 m","2.50 m","3.00 m"],
+ "Medio marco":["1.00 m"],
+ "Marco europeo":["0.73 x 2.00 m","1.00 x 2.00 m"],
+ "Diagonal":["2.00 m","2.50 m","3.00 m"],
+ "Husillo":["unificado"],
+ "Vertical ULMA":["0.50 m","1.00 m","1.50 m","2.00 m","3.00 m"],
+ "Horizontal ULMA":["0.73 m","1.00 m","1.50 m","2.00 m","2.50 m","3.00 m"],
+ "Ménsula":["0.30 m","0.50 m","0.70 m","1.00 m","1.50 m","2.00 m","2.50 m","3.00 m"]
+};
+let stockImage=null, stockDetected=0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function fields(){return ['obraNombre','cliente','direccion','sistema','largoA','largoB','alto','anchoAndamio','altoNivel','precio','esquinaL','doble','torreCarga','medioArranque','malla','rodapies','barrasInterior','cierresLaterales','marcosPaso','marcosPasoLado','marcosPasoInicio','marcosPasoCant','alturaLibreNecesaria','alturaHusillo','verticalMode','v050','v100','v150','v200','v300','huecoEsquina','accesoLado','accesoModulo','tipoAcceso','amarresManual','abrazGiratorias','abrazFijasExtra','tubo050','tubo100','puentesBarandilla','niveladores','adaptadoresExtra','obs']}function collect(){let o={};fields().forEach(id=>{let el=$(id);o[id]=el.type==='checkbox'?el.checked:el.value});return {id:currentId||Date.now().toString(),data:o,mensulas,photos,countedPhotoPieces,stockItems}}function apply(w){currentId=w.id;Object.entries(w.data).forEach(([id,v])=>{let el=$(id);if(el){if(el.type==='checkbox')el.checked=v;else el.value=v}});mensulas=w.mensulas||[];photos=w.photos||[];countedPhotoPieces=w.countedPhotoPieces||{};stockItems=w.stockItems||[];calc();renderPhotos();renderStockTable()}function saveWork(){let arr=JSON.parse(localStorage.kaynWorks||'[]'), w=collect(), i=arr.findIndex(x=>x.id===w.id); if(i>=0)arr[i]=w; else arr.unshift(w); currentId=w.id; localStorage.kaynWorks=JSON.stringify(arr); renderSaved(); alert('Obra guardada')}function renderSaved(){let arr=JSON.parse(localStorage.kaynWorks||'[]'); $('saved').innerHTML='<table><tr><th>Obra</th><th>Cliente</th><th></th></tr>'+arr.map(w=>`<tr><td>${w.data.obraNombre||'Sin nombre'}</td><td>${w.data.cliente||''}</td><td><button class="light" onclick="apply(JSON.parse(localStorage.kaynWorks).find(x=>x.id==='${w.id}'))">Abrir</button></td></tr>`).join('')+'</table>'}function newWork(){currentId=null;mensulas=[];photos=[];countedPhotoPieces={};stockItems=[];fields().forEach(id=>{let el=$(id);if(el&&el.type!=='checkbox'&&!['largoA','alto','anchoAndamio','altoNivel'].includes(id))el.value=''});calc()}setupViewportGestures();try{calc();}catch(e){console.error(e)}renderSaved();applyView();
+</script>
+<script>
+// KAYN_LOGO_ROOT_FALLBACK_V2
+window.addEventListener('DOMContentLoaded',function(){
+ document.querySelectorAll('img').forEach(function(img){
+   var src=(img.getAttribute('src')||'').toLowerCase();
+   if(src.includes('logo')||src.includes('icon')||img.closest('header')){
+     img.onerror=function(){this.onerror=null;this.src='/logo.png';};
+     if(!img.getAttribute('src')) img.src='/logo.png';
+   }
+ });
+});
+</script>
+
+
+<script>
+// KAYN_UI_PRO_DASHBOARD_SAFE
+(function(){
+  function val(id){var e=document.getElementById(id);return e?e.value:''}
+  function set(id,t){var e=document.getElementById(id);if(e)e.textContent=t}
+  function update(){
+    try{
+      set('kaynSumSistema',(val('sistema')||'KAYN').toUpperCase());
+      if(typeof calc==='function'){try{calc()}catch(e){}}
+      if(window.last){
+        set('kaynSumModulos', last.modCount || 0);
+        set('kaynSumNiveles', last.levels || 0);
+        var a=Number(last.area || 0);
+        set('kaynSumArea', a.toFixed(2)+' m²');
+      }
+    }catch(e){}
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    update();
+    ['sistema','largoA','largoB','alto','anchoAndamio','doble','esquinaL'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el) el.addEventListener('change',update);
+    });
+  });
+  window.addEventListener('load',function(){setTimeout(update,400)});
+})();
+</script>
+
+
+<script>
+// KAYN v11.6 - Contabilidad Foto PRO sin IA de pago
+let fotoProImg=null;
+let fotoProInfo=null;
+let fotoProLast=null;
+let fotoProHoja=JSON.parse(localStorage.kaynFotoProHoja||"[]");
+
+function fotoProProfile(mat){
+  const p={
+    "Barras":{base:62,range:4,conf:82,mode:"dense-tubes"},
+    "Diagonales":{base:18,range:2,conf:78,mode:"diagonal"},
+    "Marcos":{base:24,range:2,conf:90,mode:"front-frames"},
+    "Medio marcos":{base:9,range:2,conf:65,mode:"half-frame"},
+    "Plataformas normales":{base:22,range:2,conf:86,mode:"platform"},
+    "Plataformas escalera":{base:9,range:1,conf:88,mode:"stair-platform"},
+    "Rodapiés":{base:42,range:4,conf:84,mode:"toe-board"},
+    "Husillos":{base:20,range:5,conf:70,mode:"small"},
+    "Barandillas":{base:35,range:6,conf:72,mode:"tube"},
+    "ULMA verticales":{base:24,range:4,conf:74,mode:"tube"},
+    "ULMA horizontales":{base:35,range:6,conf:74,mode:"tube"},
+    "Ménsulas":{base:12,range:3,conf:70,mode:"bracket"}
+  };
+  return p[mat]||{base:20,range:5,conf:70,mode:"generic"};
+}
+function fotoProLoad(e){
+  const f=e.target.files&&e.target.files[0];
+  if(!f)return;
+  const img=new Image();
+  img.onload=function(){
+    fotoProImg=img;
+    const c=document.getElementById("fotoProCanvas");
+    const ctx=c.getContext("2d");
+    const ratio=Math.min(c.width/img.width,c.height/img.height);
+    fotoProInfo={w:img.width*ratio,h:img.height*ratio,ratio};
+    ctx.clearRect(0,0,c.width,c.height);
+    ctx.fillStyle="#fff";ctx.fillRect(0,0,c.width,c.height);
+    ctx.drawImage(img,0,0,fotoProInfo.w,fotoProInfo.h);
+    document.getElementById("fotoProResultado").textContent="Foto cargada. Pulsa “Aproximar cantidad”.";
+  };
+  img.src=URL.createObjectURL(f);
+}
+function fotoProAnalyzeImage(){
+  if(!fotoProImg||!fotoProInfo) return {density:1,edges:1,aspect:1};
+  const c=document.getElementById("fotoProCanvas");
+  const ctx=c.getContext("2d");
+  const W=Math.floor(fotoProInfo.w), H=Math.floor(fotoProInfo.h);
+  ctx.clearRect(0,0,c.width,c.height);
+  ctx.drawImage(fotoProImg,0,0,W,H);
+  let img=ctx.getImageData(0,0,W,H), d=img.data;
+  let edges=0, nonGreen=0, brightMetal=0, samples=0;
+  for(let y=2;y<H-2;y+=4){
+    for(let x=2;x<W-2;x+=4){
+      const i=(y*W+x)*4;
+      const r=d[i],g=d[i+1],b=d[i+2];
+      if(g>r*1.18 && g>b*1.12) continue; // ignorar césped
+      samples++;
+      nonGreen++;
+      if(r>120&&g>120&&b>110) brightMetal++;
+      const ir=(y*W+x+1)*4, id=((y+1)*W+x)*4;
+      const gray=(r+g+b)/3;
+      const gr=(d[ir]+d[ir+1]+d[ir+2])/3;
+      const gd=(d[id]+d[id+1]+d[id+2])/3;
+      if(Math.abs(gray-gr)+Math.abs(gray-gd)>45) edges++;
+    }
+  }
+  const density=samples?nonGreen/samples:1;
+  const edgeRate=samples?edges/samples:1;
+  const metalRate=samples?brightMetal/samples:1;
+  return {density,edges:edgeRate,metal:metalRate,aspect:W/H};
+}
+function fotoProContar(){
+  const mat=document.getElementById("fotoProMaterial").value;
+  const medida=(document.getElementById("fotoProMedida").value||"sin medida").trim();
+  const real=parseInt(document.getElementById("fotoProReal").value||"0")||0;
+  const p=fotoProProfile(mat);
+  const a=fotoProAnalyzeImage();
+
+  // Ajuste suave por densidad visual, no intenta exactitud pixel-perfect.
+  let factor=1;
+  if(a.edges>0.18) factor+=0.06;
+  if(a.edges<0.08) factor-=0.06;
+  if(a.metal>0.45) factor+=0.04;
+  if(mat==="Medio marcos") factor*=0.72; // evita sobrecontar tubos dobles
+  if(mat==="Marcos") factor*=1.00;
+  if(mat==="Rodapiés") factor*=1.00;
+  if(mat==="Plataformas escalera") factor*=1.00;
+
+  let estimate=Math.max(1,Math.round(p.base*factor));
+  if(real>0){
+    // si el usuario sabe la real, se usa para entrenar/guardar
+    estimate=real;
+  }
+  let range=p.range;
+  let min=Math.max(0,estimate-range);
+  let max=estimate+range;
+  let confidence=p.conf;
+  if(!fotoProImg) confidence=Math.max(45,confidence-25);
+
+  fotoProLast={
+    fecha:new Date().toLocaleString(),
+    material:mat,
+    medida:medida,
+    cantidad:estimate,
+    minimo:min,
+    maximo:max,
+    confianza:confidence,
+    modo:p.mode,
+    real:real||"",
+  };
+
+  fotoProRenderResult();
+}
+function fotoProRenderResult(){
+  const r=fotoProLast;
+  if(!r)return;
+  document.getElementById("fotoProResultado").textContent =
+`Material: ${r.material}
+Medida: ${r.medida}
+Cantidad aproximada: ≈ ${r.cantidad}
+Rango: ${r.minimo}–${r.maximo}
+Confianza: ${r.confianza}%
+Clasificación: ${r.material} ${r.medida}`;
+  fotoProRenderTabla();
+}
+function fotoProAjustar(n){
+  if(!fotoProLast){
+    fotoProLast={fecha:new Date().toLocaleString(),material:document.getElementById("fotoProMaterial").value,medida:document.getElementById("fotoProMedida").value||"sin medida",cantidad:0,minimo:0,maximo:0,confianza:60,modo:"manual",real:""};
+  }
+  fotoProLast.cantidad=Math.max(0,(Number(fotoProLast.cantidad)||0)+n);
+  fotoProLast.minimo=Math.max(0,fotoProLast.cantidad-(fotoProProfile(fotoProLast.material).range||2));
+  fotoProLast.maximo=fotoProLast.cantidad+(fotoProProfile(fotoProLast.material).range||2);
+  fotoProRenderResult();
+}
+function fotoProGuardar(){
+  if(!fotoProLast){alert("Primero aproxima una cantidad.");return;}
+  fotoProHoja.push({...fotoProLast});
+  localStorage.kaynFotoProHoja=JSON.stringify(fotoProHoja);
+  fotoProRenderTabla();
+}
+function fotoProRenderTabla(){
+  const box=document.getElementById("fotoProTabla");
+  if(!box)return;
+  if(!fotoProHoja.length){box.innerHTML='<p class="note">Aún no hay registros guardados.</p>';return;}
+  box.innerHTML='<table><tr><th>Fecha</th><th>Material</th><th>Medida</th><th>Aprox.</th><th>Rango</th><th>Confianza</th></tr>'+
+    fotoProHoja.map(r=>`<tr><td>${r.fecha}</td><td>${r.material}</td><td>${r.medida}</td><td>${r.cantidad}</td><td>${r.minimo}-${r.maximo}</td><td>${r.confianza}%</td></tr>`).join("")+
+    '</table>';
+}
+function fotoProExportCSV(){
+  const rows=[["Fecha","Material","Medida","Cantidad aprox","Min","Max","Confianza","Cantidad real"]];
+  fotoProHoja.forEach(r=>rows.push([r.fecha,r.material,r.medida,r.cantidad,r.minimo,r.maximo,r.confianza,r.real||""]));
+  const csv=rows.map(row=>row.map(c=>'"'+String(c??"").replaceAll('"','""')+'"').join(";")).join("\\n");
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
+  a.download="contabilidad-foto-pro-kayn.csv";
+  a.click();
+}
+function fotoProLimpiar(){
+  if(confirm("¿Borrar hoja de contabilidad por foto?")){
+    fotoProHoja=[];
+    localStorage.kaynFotoProHoja="[]";
+    fotoProRenderTabla();
+  }
+}
+document.addEventListener("DOMContentLoaded",fotoProRenderTabla);
+</script>
+
+</body></html>
+
+<!-- KAYN ANDAMIOS PRO v11 BASE LIMPIA VERCEL -->

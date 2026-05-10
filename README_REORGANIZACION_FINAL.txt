@@ -1,0 +1,1 @@
+KAYN v12.4 reorganiza la app: Planos se centra en diseño y visualización 2D/3D; Despiece queda separado para material, CSV y PDF.

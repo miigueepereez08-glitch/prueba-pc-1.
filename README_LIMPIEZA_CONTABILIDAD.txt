@@ -1,0 +1,1 @@
+KAYN v11.7 Limpieza: elimina contadores antiguos y deja solo Contabilidad Foto PRO como sistema de conteo por foto. No toca planos ni editor.

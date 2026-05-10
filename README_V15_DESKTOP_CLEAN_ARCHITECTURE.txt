@@ -1,0 +1,1 @@
+KAYN v15 Desktop Clean Architecture: primera ejecución de FASE 2 sobre base estable v12.8. Reorganiza experiencia desktop, dashboard y estructura profesional sin tocar lógica delicada.

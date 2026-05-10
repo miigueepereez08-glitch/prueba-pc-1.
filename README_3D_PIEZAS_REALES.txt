@@ -1,0 +1,1 @@
+KAYN v12.1: Vista 3D más detallada con piezas individuales y detalles visuales.

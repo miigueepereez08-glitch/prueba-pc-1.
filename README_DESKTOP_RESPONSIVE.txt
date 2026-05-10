@@ -1,0 +1,1 @@
+KAYN v12.8 Desktop Responsive: optimizado para ordenador con menú lateral fijo, zona de trabajo amplia y panel superior. En móvil mantiene el diseño normal.

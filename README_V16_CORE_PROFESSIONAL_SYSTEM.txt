@@ -1,0 +1,1 @@
+KAYN v16 Core Professional System: reemplaza editor-modulos.html por un núcleo profesional con toolbox, plano 2D, 3D integrado por iframe y panel de propiedades funcional básico. Mantiene base v15 estable.

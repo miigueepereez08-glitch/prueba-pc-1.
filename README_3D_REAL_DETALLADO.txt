@@ -1,0 +1,1 @@
+KAYN v12.0: mejora Vista 3D + Despiece con módulos 3D más reales: tubos redondeados, plataformas, rodapiés, barandillas, diagonales y colores por sistema. Integrado dentro de vista-3d.html.

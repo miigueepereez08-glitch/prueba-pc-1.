@@ -1,0 +1,1 @@
+KAYN v11.4 Editor módulos 2D: añade /editor-modulos.html y botón en la app. No modifica cálculos principales.

@@ -1,0 +1,1 @@
+KAYN v11.5 Snap magnético: el editor de módulos pega módulos al acercarlos, alinea alturas y mantiene el botón Imán ON/OFF. No modifica cálculos principales.
