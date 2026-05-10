@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KAYN · Editor PRO v18.3 · 3D Estable Integrado</title>
+<title>KAYN · Editor PRO v18.4 · 3D Pro Evolución</title>
 <link rel="icon" href="/icon-192.png">
 <style>
 :root{
@@ -65,7 +65,7 @@ label{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;l
 <body>
 <header class="topbar">
   <div class="brand"><img src="/logo.png" alt="KAYN"><div class="brandText"><strong>KAYN</strong><span>ANDAMIOS</span></div></div>
-  <div class="modeTitle"><b>Editor PRO · 3D estable integrado v18.3</b><span>Crea el andamio en 2D y míralo en 3D sin salir del editor.</span></div>
+  <div class="modeTitle"><b>Editor PRO · 3D PRO integrado v18.4</b><span>Crea en 2D, revisa en 3D y mueve módulos sin salir del Editor PRO.</span></div>
   <div class="topActions"><span id="syncBadge" class="pill ok">● Sincronizado</span><a class="back" href="/index.html">← Inicio</a></div>
 </header>
 
@@ -99,7 +99,8 @@ label{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;l
       <button onclick="duplicateSelected()">Duplicar</button>
       <button onclick="deleteSelected()" class="danger">Eliminar</button>
       <button onclick="toggleBreakdown()">Despiece</button>
-      <button onclick="resetView()">Centrar</button>
+      <button onclick="resetView()">Centrar 2D</button>
+      <button onclick="reset3DCamera()">Cámara 3D</button>
       <button onclick="saveProject()" class="primary">Guardar</button>
     </div>
   </section>
@@ -190,7 +191,7 @@ function addModule(){const x=modules.length?Math.max(...modules.map(m=>m.x+m.lar
 function duplicateSelected(){const m=modules.find(a=>a.id===selected);if(!m){toast('Selecciona un módulo primero');return}const c=normalizeModule({...m,id:Date.now()+Math.random(),x:snap(m.x+m.largo+.5)});modules.push(c);selected=c.id;sync();toast('Módulo duplicado')}
 function deleteSelected(){if(!selected)return;modules=modules.filter(m=>m.id!==selected);selected=modules[0]?.id||null;sync();toast('Módulo eliminado')}
 function togglePaso(){const m=modules.find(a=>a.id===selected);if(m){m.paso=!m.paso;m.tipo=m.paso?'paso':'modulo';sync()}}
-function resetView(redraw=true){panX=90;panY=140;scale=1;if(redraw)drawAll()}
+function resetView(redraw=true){panX=90;panY=140;scale=1;if(viewMode==='3d')reset3DCamera();if(redraw)drawAll()}
 function hit(wx,wy){for(let i=modules.length-1;i>=0;i--){const m=modules[i];if(m.estado==='Oculto')continue;if(wx>=m.x&&wx<=m.x+m.largo&&wy>=m.y&&wy<=m.y+m.ancho)return m}return null}
 function drawGrid(w,h){ctx.clearRect(0,0,w,h);ctx.fillStyle='#070a0d';ctx.fillRect(0,0,w,h);const step=Math.max(10,PX*scale*GRID);ctx.strokeStyle='rgba(255,255,255,.055)';ctx.lineWidth=1;for(let x=panX%step;x<w;x+=step){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke()}for(let y=panY%step;y<h;y+=step){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke()}ctx.strokeStyle='rgba(255,122,0,.45)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,panY);ctx.lineTo(w,panY);ctx.stroke();ctx.beginPath();ctx.moveTo(panX,0);ctx.lineTo(panX,h);ctx.stroke()}
 function drawModule(m){if(m.estado==='Oculto')return;const p=worldToScreen(m.x,m.y), w=m.largo*PX*scale, h=m.ancho*PX*scale, sel=m.id===selected;ctx.save();ctx.fillStyle=sel?'rgba(255,122,0,.28)':(m.paso?'rgba(255,155,34,.14)':'rgba(66,165,255,.13)');ctx.strokeStyle=sel?'#ff8a12':(m.paso?'#ff9b22':'#42a5ff');ctx.lineWidth=sel?4:2;roundRect(ctx,p.x,p.y,w,h,10,true,true);ctx.strokeStyle='rgba(255,255,255,.62)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(p.x+10,p.y+h-10);ctx.lineTo(p.x+w-10,p.y+10);ctx.stroke();ctx.beginPath();ctx.moveTo(p.x+10,p.y+10);ctx.lineTo(p.x+w-10,p.y+h-10);ctx.stroke();const cols=Math.max(2,Math.round(m.largo/1.5)+1);ctx.strokeStyle='rgba(255,255,255,.28)';ctx.lineWidth=1;for(let i=1;i<cols;i++){const xx=p.x+w*i/cols;ctx.beginPath();ctx.moveTo(xx,p.y+4);ctx.lineTo(xx,p.y+h-4);ctx.stroke()}if(sel){drawHandles(p.x,p.y,w,h)}ctx.fillStyle='#f8fbff';ctx.font='700 12px Arial';ctx.fillText((m.paso?'PASO · ':'')+m.largo.toFixed(2)+'m · '+m.niveles+' niv.',p.x+10,p.y+21);ctx.restore()}
@@ -198,7 +199,7 @@ function drawHandles(x,y,w,h){ctx.fillStyle='#ff8a12';ctx.strokeStyle='#111';ctx
 function roundRect(c,x,y,w,h,r,fill,stroke){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();if(fill)c.fill();if(stroke)c.stroke()}
 
 function drawAll(){const w=stage.clientWidth,h=stage.clientHeight;if(viewMode==='3d')draw3D(w,h);else{drawGrid(w,h);modules.forEach(drawModule)}}
-function setViewMode(mode){viewMode=mode;stage.classList.toggle('view3d',mode==='3d');document.getElementById('btn2d').classList.toggle('active',mode==='2d');document.getElementById('btn3d').classList.toggle('active',mode==='3d');document.getElementById('viewLabel').textContent=mode==='3d'?'Vista 3D estable · v18.3':'Plano 2D';drawAll();toast(mode==='3d'?'3D dentro del editor: selecciona y arrastra módulos':'Vista 2D')}
+function setViewMode(mode){viewMode=mode;stage.classList.toggle('view3d',mode==='3d');document.getElementById('btn2d').classList.toggle('active',mode==='2d');document.getElementById('btn3d').classList.toggle('active',mode==='3d');document.getElementById('viewLabel').textContent=mode==='3d'?'Vista 3D PRO · v18.4':'Plano 2D';drawAll();toast(mode==='3d'?'3D dentro del editor: selecciona y arrastra módulos':'Vista 2D')}
 function project3D(x,y,z,cx,cy,zoom){const X=x*Math.cos(rotY)-y*Math.sin(rotY);const Y=x*Math.sin(rotY)+y*Math.cos(rotY);const yy=Y*Math.cos(rotX)-z*Math.sin(rotX);return{x:cx+X*zoom,y:cy+yy*zoom,depth:Y+z*.08}}
 function line3D(a,b,color='rgba(235,241,248,.85)',lw=2){ctx3d.strokeStyle=color;ctx3d.lineWidth=lw;ctx3d.lineCap='round';ctx3d.beginPath();ctx3d.moveTo(a.x,a.y);ctx3d.lineTo(b.x,b.y);ctx3d.stroke()}
 function tube3D(a,b,color,lw=4,glow=2){ctx3d.save();ctx3d.shadowColor=color;ctx3d.shadowBlur=glow;line3D(a,b,color,lw);ctx3d.restore()}
@@ -235,13 +236,16 @@ function ensureThree(){
   threeRaycaster=new THREE.Raycaster();
   threeMouse=new THREE.Vector2();
   threePlane=new THREE.Plane(new THREE.Vector3(0,0,1),0);
-  THREE_MATERIALS.galv=new THREE.MeshStandardMaterial({color:0xc7d0d8,metalness:.72,roughness:.28});
-  THREE_MATERIALS.darkGalv=new THREE.MeshStandardMaterial({color:0x8f9aa3,metalness:.78,roughness:.32});
-  THREE_MATERIALS.orange=new THREE.MeshStandardMaterial({color:0xff7a00,metalness:.35,roughness:.25,emissive:0x2a1100});
-  THREE_MATERIALS.platform=new THREE.MeshStandardMaterial({color:0x6d7680,metalness:.65,roughness:.38});
+  THREE_MATERIALS.galv=new THREE.MeshStandardMaterial({color:0xd7dde2,metalness:.82,roughness:.22});
+  THREE_MATERIALS.darkGalv=new THREE.MeshStandardMaterial({color:0x8f9aa3,metalness:.82,roughness:.28});
+  THREE_MATERIALS.orange=new THREE.MeshStandardMaterial({color:0xff7a00,metalness:.45,roughness:.20,emissive:0x2f1200});
+  THREE_MATERIALS.platform=new THREE.MeshStandardMaterial({color:0x747f88,metalness:.72,roughness:.32});
   THREE_MATERIALS.wood=new THREE.MeshStandardMaterial({color:0x8a6038,metalness:.05,roughness:.62});
-  THREE_MATERIALS.node=new THREE.MeshStandardMaterial({color:0x303941,metalness:.8,roughness:.24});
+  THREE_MATERIALS.node=new THREE.MeshStandardMaterial({color:0x303941,metalness:.86,roughness:.22});
+  THREE_MATERIALS.black=new THREE.MeshStandardMaterial({color:0x15191d,metalness:.75,roughness:.30});
+  THREE_MATERIALS.toe=new THREE.MeshStandardMaterial({color:0xbb6a20,metalness:.2,roughness:.48});
   THREE_MATERIALS.floor=new THREE.MeshStandardMaterial({color:0x101418,metalness:.15,roughness:.7});
+  THREE_MATERIALS.selection=new THREE.MeshBasicMaterial({color:0xff8a12,transparent:true,opacity:.11,depthWrite:false});
   const hemi=new THREE.HemisphereLight(0xffffff,0x17191d,1.25);threeScene.add(hemi);
   const key=new THREE.DirectionalLight(0xffffff,1.75);key.position.set(5,-7,10);key.castShadow=true;key.shadow.mapSize.set(1024,1024);threeScene.add(key);
   const rim=new THREE.DirectionalLight(0xff7a00,.45);rim.position.set(-6,5,4);threeScene.add(rim);
@@ -260,21 +264,116 @@ function boxPart(x,y,z,w,d,h,mat){const mesh=new THREE.Mesh(new THREE.BoxGeometr
 function addPlatform(group,m,z,mat){const parts=Math.max(2,Math.round(m.ancho/.32));for(let i=0;i<parts;i++){const y=m.y+(i+.5)*m.ancho/parts;group.add(boxPart(m.x+m.largo/2,y,z,m.largo-.08,m.ancho/parts-.035,.08,mat));}for(let x=m.x+.35;x<m.x+m.largo;x+=.55){group.add(boxPart(x,m.y+m.ancho/2,z+.055,.035,m.ancho,.045,THREE_MATERIALS.darkGalv));}}
 function addBaseJack(group,x,y,sel){const mat=sel?THREE_MATERIALS.orange:THREE_MATERIALS.galv;group.add(tubeBetween([x,y,-.28],[x,y,.24],.035,mat));group.add(boxPart(x,y,-.31,.42,.28,.035,mat));}
 function addRosette(group,x,y,z,mat){const g=new THREE.Group();const ring=new THREE.Mesh(new THREE.CylinderGeometry(.145,.145,.025,24),mat);ring.rotation.x=Math.PI/2;g.add(ring);for(let i=0;i<8;i++){const a=i*Math.PI/4;const plate=boxPart(Math.cos(a)*.11,Math.sin(a)*.11,0,.13,.026,.018,mat);plate.rotation.z=a;g.add(plate)}g.position.set(x,y,z);group.add(g)}
-function makeModuleGroup(m){const g=new THREE.Group();g.userData.moduleId=m.id;const sel=m.id===selected;const top=(m.niveles||1)*2;const xs=[m.x,m.x+m.largo],ys=[m.y,m.y+m.ancho];const main=matFor(m,THREE_MATERIALS.galv), rail=matFor(m,THREE_MATERIALS.darkGalv), diag=matFor(m,THREE_MATERIALS.darkGalv);
-  if((m.sistema||currentSystem())==='Multidireccional'){
-    for(const x of xs)for(const y of ys){addBaseJack(g,x,y,sel);g.add(tubeBetween([x,y,0],[x,y,top+.28],.045,main));for(let z=0;z<=top+.01;z+=.5)addRosette(g,x,y,z,sel?THREE_MATERIALS.orange:THREE_MATERIALS.node)}
-    for(let lvl=0;lvl<=m.niveles;lvl++){const z=lvl*2;for(const y of ys)g.add(tubeBetween([m.x,y,z],[m.x+m.largo,y,z],.038,rail));for(const x of xs)g.add(tubeBetween([x,m.y,z],[x,m.y+m.ancho,z],.038,rail));if(lvl>0){addPlatform(g,m,z-.08,THREE_MATERIALS.platform);for(const y of ys)g.add(boxPart(m.x+m.largo/2,y,z+.18,m.largo,.055,.18,THREE_MATERIALS.wood));}}
-    for(let lvl=0;lvl<m.niveles;lvl++){const z=lvl*2,z2=(lvl+1)*2;g.add(tubeBetween([m.x,m.y,z],[m.x+m.largo,m.y+m.ancho,z2],.025,diag));g.add(tubeBetween([m.x+m.largo,m.y,z],[m.x,m.y+m.ancho,z2],.025,diag));}
-  }else{
-    const frameStep=2.5;let frameXs=[];for(let x=m.x;x<=m.x+m.largo+.01;x+=frameStep)frameXs.push(Math.min(x,m.x+m.largo));if(frameXs[frameXs.length-1]!==m.x+m.largo)frameXs.push(m.x+m.largo);
-    for(const x of frameXs)for(const y of ys){addBaseJack(g,x,y,sel);g.add(tubeBetween([x,y,0],[x,y,top+.22],.052,main));for(let lvl=0;lvl<=m.niveles;lvl++){const z=lvl*2;g.add(tubeBetween([x,m.y,z],[x,m.y+m.ancho,z],.04,rail));if(lvl<m.niveles){g.add(tubeBetween([x,m.y,z+.55],[x,m.y+m.ancho,z+.55],.026,rail));g.add(tubeBetween([x,m.y,z+1.05],[x,m.y+m.ancho,z+1.05],.026,rail));}}}
-    for(let lvl=0;lvl<=m.niveles;lvl++){const z=lvl*2;for(const y of ys)g.add(tubeBetween([m.x,y,z],[m.x+m.largo,y,z],.038,rail));if(lvl>0){addPlatform(g,m,z-.08,THREE_MATERIALS.platform);for(const y of ys)g.add(boxPart(m.x+m.largo/2,y,z+.17,m.largo,.055,.18,THREE_MATERIALS.wood));}}
-    for(let lvl=0;lvl<m.niveles;lvl++){const z=lvl*2,z2=(lvl+1)*2;for(const y of ys){g.add(tubeBetween([m.x,y,z],[m.x+m.largo,y,z2],.026,diag));g.add(tubeBetween([m.x+m.largo,y,z],[m.x,y,z2],.026,diag));}}
+
+function addGuardRails(group,m,z,mat){
+  const ys=[m.y,m.y+m.ancho];
+  for(const y of ys){
+    group.add(tubeBetween([m.x,y,z+.95],[m.x+m.largo,y,z+.95],.026,mat,10));
+    group.add(tubeBetween([m.x,y,z+1.45],[m.x+m.largo,y,z+1.45],.026,mat,10));
   }
+}
+function addToeBoards(group,m,z,mat){
+  const ys=[m.y,m.y+m.ancho];
+  for(const y of ys) group.add(boxPart(m.x+m.largo/2,y,z+.16,m.largo-.08,.055,.22,mat));
+}
+function addFrameSide(group,x,m,z,mat){
+  group.add(tubeBetween([x,m.y,z],[x,m.y+m.ancho,z],.04,mat,12));
+  group.add(tubeBetween([x,m.y,z+2],[x,m.y+m.ancho,z+2],.04,mat,12));
+  group.add(tubeBetween([x,m.y,z],[x,m.y,z+2.05],.052,mat,14));
+  group.add(tubeBetween([x,m.y+m.ancho,z],[x,m.y+m.ancho,z+2.05],.052,mat,14));
+  group.add(tubeBetween([x,m.y,z+.55],[x,m.y+m.ancho,z+.55],.026,mat,10));
+  group.add(tubeBetween([x,m.y,z+1.08],[x,m.y+m.ancho,z+1.08],.026,mat,10));
+  group.add(tubeBetween([x,m.y,z+.05],[x,m.y+m.ancho,z+1.95],.024,mat,10));
+}
+function addSelectionBox(group,m){
+  if(m.id!==selected)return;
+  const top=(m.niveles||1)*2;
+  const box=new THREE.Mesh(new THREE.BoxGeometry(m.largo+.16,m.ancho+.16,top+.32),THREE_MATERIALS.selection);
+  box.position.set(m.x+m.largo/2,m.y+m.ancho/2,top/2);
+  box.userData.ignorePick=true;
+  group.add(box);
+  const edges=new THREE.EdgesGeometry(box.geometry);
+  const line=new THREE.LineSegments(edges,new THREE.LineBasicMaterial({color:0xff8a12,transparent:true,opacity:.9}));
+  line.position.copy(box.position);
+  line.userData.ignorePick=true;
+  group.add(line);
+}
+
+function makeModuleGroup(m){
+  const g=new THREE.Group();
+  g.userData.moduleId=m.id;
+  const sel=m.id===selected;
+  const top=(m.niveles||1)*2;
+  const xs=[m.x,m.x+m.largo], ys=[m.y,m.y+m.ancho];
+  const main=matFor(m,THREE_MATERIALS.galv), rail=matFor(m,THREE_MATERIALS.darkGalv), diag=matFor(m,THREE_MATERIALS.darkGalv);
+
+  if((m.sistema||currentSystem())==='Multidireccional'){
+    // Multidireccional tipo ULMA/BRIO: montantes, rosetas cada 0,5 m, largueros y diagonales de volumen.
+    for(const x of xs)for(const y of ys){
+      addBaseJack(g,x,y,sel);
+      g.add(tubeBetween([x,y,0],[x,y,top+.28],.045,main,16));
+      for(let z=0;z<=top+.01;z+=.5) addRosette(g,x,y,z,sel?THREE_MATERIALS.orange:THREE_MATERIALS.node);
+    }
+    for(let lvl=0;lvl<=m.niveles;lvl++){
+      const z=lvl*2;
+      for(const y of ys) g.add(tubeBetween([m.x,y,z],[m.x+m.largo,y,z],.038,rail,14));
+      for(const x of xs) g.add(tubeBetween([x,m.y,z],[x,m.y+m.ancho,z],.038,rail,14));
+      if(lvl>0){
+        addPlatform(g,m,z-.08,THREE_MATERIALS.platform);
+        addToeBoards(g,m,z,sel?THREE_MATERIALS.orange:THREE_MATERIALS.toe);
+        addGuardRails(g,m,z,rail);
+      }
+      if(lvl<m.niveles){
+        const mid=z+1;
+        for(const y of ys) g.add(tubeBetween([m.x,y,mid],[m.x+m.largo,y,mid],.023,rail,10));
+      }
+    }
+    for(let lvl=0;lvl<m.niveles;lvl++){
+      const z=lvl*2,z2=(lvl+1)*2;
+      g.add(tubeBetween([m.x,m.y,z],[m.x+m.largo,m.y,z2],.026,diag,10));
+      g.add(tubeBetween([m.x+m.largo,m.y,z],[m.x,m.y,z2],.026,diag,10));
+      g.add(tubeBetween([m.x,m.y+m.ancho,z],[m.x+m.largo,m.y+m.ancho,z2],.026,diag,10));
+      g.add(tubeBetween([m.x+m.largo,m.y+m.ancho,z],[m.x,m.y+m.ancho,z2],.026,diag,10));
+    }
+  }else{
+    // Europeo de marco: marcos verticales, crucetas en fachada, plataformas, rodapiés y barandillas.
+    const frameStep=Math.max(1.5,Math.min(3,parseFloat(genModulo?.value||3)));
+    let frameXs=[];
+    for(let x=m.x;x<m.x+m.largo-.01;x+=frameStep) frameXs.push(x);
+    frameXs.push(m.x+m.largo);
+    frameXs=[...new Set(frameXs.map(v=>Number(v.toFixed(3))))];
+
+    for(const x of frameXs){
+      for(let lvl=0;lvl<m.niveles;lvl++) addFrameSide(g,x,m,lvl*2,main);
+      for(const y of ys) addBaseJack(g,x,y,sel);
+    }
+    for(let lvl=0;lvl<=m.niveles;lvl++){
+      const z=lvl*2;
+      for(const y of ys) g.add(tubeBetween([m.x,y,z],[m.x+m.largo,y,z],.038,rail,14));
+      if(lvl>0){
+        addPlatform(g,m,z-.08,THREE_MATERIALS.platform);
+        addToeBoards(g,m,z,sel?THREE_MATERIALS.orange:THREE_MATERIALS.toe);
+        addGuardRails(g,m,z,rail);
+      }
+    }
+    for(let lvl=0;lvl<m.niveles;lvl++){
+      const z=lvl*2,z2=(lvl+1)*2;
+      for(const y of ys){
+        g.add(tubeBetween([m.x,y,z+.05],[m.x+m.largo,y,z2-.05],.026,diag,10));
+        g.add(tubeBetween([m.x+m.largo,y,z+.05],[m.x,y,z2-.05],.026,diag,10));
+      }
+    }
+    if(m.paso){
+      const z=2;
+      for(const y of ys) g.add(tubeBetween([m.x+.25,y,z],[m.x+m.largo-.25,y,z],.06,THREE_MATERIALS.orange,16));
+    }
+  }
+  addSelectionBox(g,m);
   const box=new THREE.Box3().setFromObject(g);g.userData.box=box;return tagModuleMeshes(g,m.id);
 }
 function rebuildThree(){if(!ensureThree())return;clearThreeRoot();const floor=boxPart(0,0,-.34,80,80,.02,THREE_MATERIALS.floor);floor.receiveShadow=true;floor.userData.ignorePick=true;threeRoot.add(floor);modules.filter(m=>m.estado!=='Oculto').forEach(m=>threeRoot.add(makeModuleGroup(m)));fitCameraToScaffold();threeNeedsBuild=false;}
-function fitCameraToScaffold(){const active=modules.filter(m=>m.estado!=='Oculto');if(!active.length)return;const minX=Math.min(...active.map(m=>m.x)),maxX=Math.max(...active.map(m=>m.x+m.largo)),minY=Math.min(...active.map(m=>m.y)),maxY=Math.max(...active.map(m=>m.y+m.ancho)),maxZ=Math.max(...active.map(m=>(m.niveles||1)*2));const cx=(minX+maxX)/2,cy=(minY+maxY)/2,cz=maxZ/2;threeControls.target.set(cx,cy,cz);if(!threeCamera.userData.fitted){threeCamera.position.set(cx+6,cy-8,Math.max(4,cz+5));threeCamera.userData.fitted=true}}
+function fitCameraToScaffold(){const active=modules.filter(m=>m.estado!=='Oculto');if(!active.length||!threeControls||!threeCamera)return;const minX=Math.min(...active.map(m=>m.x)),maxX=Math.max(...active.map(m=>m.x+m.largo)),minY=Math.min(...active.map(m=>m.y)),maxY=Math.max(...active.map(m=>m.y+m.ancho)),maxZ=Math.max(...active.map(m=>(m.niveles||1)*2));const cx=(minX+maxX)/2,cy=(minY+maxY)/2,cz=maxZ/2;if(!threeCamera.userData.fitted){threeControls.target.set(cx,cy,cz);threeCamera.position.set(cx+Math.max(6,(maxX-minX)*.75),cy-Math.max(8,(maxX-minX)*.85),Math.max(5,cz+5));threeCamera.userData.fitted=true}}
+function reset3DCamera(){if(!ensureThree()){toast('3D cargando');return}threeCamera.userData.fitted=false;fitCameraToScaffold();threeControls.update();toast('Cámara 3D centrada')}
 function draw3D(w,h){try{if(!window.THREE || !THREE.OrbitControls){safeThreeError('Cargando Three.js desde CDN... Si tarda, revisa conexión.');setTimeout(()=>{if(viewMode==='3d')drawAll()},800);return}ensureThree();rebuildThree();}catch(err){console.error('[KAYN 3D]',err);safeThreeError(err.message||'Error interno del motor 3D');}}
 function setMouse3D(e){const r=canvas3d.getBoundingClientRect();threeMouse.x=((e.clientX-r.left)/r.width)*2-1;threeMouse.y=-((e.clientY-r.top)/r.height)*2+1;}
 function pickModule3D(e){if(!ensureThree())return null;setMouse3D(e);threeRaycaster.setFromCamera(threeMouse,threeCamera);const hits=threeRaycaster.intersectObjects(threeRoot.children,true);for(const h of hits){let o=h.object;if(o.userData?.ignorePick)continue;while(o&&o!==threeRoot){if(o.userData?.moduleId)return modules.find(m=>m.id===o.userData.moduleId);o=o.parent}}return null}
@@ -289,7 +388,7 @@ function renderProps(){const m=modules.find(a=>a.id===selected);inspector.classL
 function updateSelectedFromProps(){const m=modules.find(a=>a.id===selected);if(!m)return;m.tipo=propTipo.value;m.largo=parseFloat(propLargo.value||m.largo);m.ancho=parseFloat(propAncho.value||m.ancho);m.niveles=parseInt(propNiveles.value||m.niveles);m.x=snap(parseFloat(propX.value||m.x));m.y=snap(parseFloat(propY.value||m.y));m.nota=propNota.value||'';m.paso=m.tipo==='paso';sync()}
 function sync(){modules=modules.map(normalizeModule);localStorage.kaynEditorModulos=JSON.stringify({modules});coreSync();drawAll();renderProps();renderBreakdown();updateStats();setDirty(true)}
 function saveProject(){localStorage.kaynEditorModulos=JSON.stringify({modules});coreSync();setDirty(false);toast('Proyecto guardado')}
-function coreSync(){window.coreEngine=window.coreEngine||{version:'18.3',project:{id:'kayn-'+Date.now(),name:'Proyecto KAYN',updatedAt:new Date().toISOString()},modules:[],selection:[],breakdown:{},settings:{system:currentSystem()},history:[]};window.coreEngine.version='18.3';window.coreEngine.modules=modules;window.coreEngine.selection=selected?[selected]:[];window.coreEngine.settings={...(window.coreEngine.settings||{}),system:currentSystem()};window.coreEngine.project.updatedAt=new Date().toISOString();localStorage.kaynCoreEngine=JSON.stringify(window.coreEngine)}
+function coreSync(){window.coreEngine=window.coreEngine||{version:'18.4',project:{id:'kayn-'+Date.now(),name:'Proyecto KAYN',updatedAt:new Date().toISOString()},modules:[],selection:[],breakdown:{},settings:{system:currentSystem()},history:[]};window.coreEngine.version='18.4';window.coreEngine.modules=modules;window.coreEngine.selection=selected?[selected]:[];window.coreEngine.settings={...(window.coreEngine.settings||{}),system:currentSystem()};window.coreEngine.project.updatedAt=new Date().toISOString();localStorage.kaynCoreEngine=JSON.stringify(window.coreEngine)}
 function coreLoad(){try{const saved=JSON.parse(localStorage.kaynCoreEngine||'null');if(saved&&Array.isArray(saved.modules)&&saved.modules.length){window.coreEngine=saved;modules=saved.modules.map(normalizeModule);selected=saved.selection?.[0]||modules[0]?.id||null;return true}}catch(e){}try{const p=JSON.parse(localStorage.kaynEditorModulos||'{}');if(Array.isArray(p.modules)&&p.modules.length){modules=p.modules.map(normalizeModule);selected=modules[0]?.id||null;return true}}catch(e){}return false}
 function pos(e){const r=canvas.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}}
 canvas.addEventListener('pointerdown',e=>{const p=pos(e),w=screenToWorld(p.x,p.y),m=hit(w.x,w.y);lastPointer=p;if(m){selected=m.id;dragging=true;dragOff.x=w.x-m.x;dragOff.y=w.y-m.y;stage.classList.add('dragging');sync()}else{selected=null;panning=true;renderProps();drawAll();updateStats()}canvas.setPointerCapture(e.pointerId)});
@@ -298,8 +397,8 @@ canvas.addEventListener('pointerup',e=>{dragging=false;panning=false;stage.class
 canvas.addEventListener('wheel',e=>{e.preventDefault();const p=pos(e),before=screenToWorld(p.x,p.y);scale=Math.max(.35,Math.min(3.2,scale*(e.deltaY<0?1.08:.92)));const after=screenToWorld(p.x,p.y);panX+=(after.x-before.x)*PX*scale;panY+=(after.y-before.y)*PX*scale;drawAll()},{passive:false});
 window.addEventListener('keydown',e=>{if(e.key==='Delete')deleteSelected();if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='d'){e.preventDefault();duplicateSelected()}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){e.preventDefault();saveProject()}});
 
-canvas3d.addEventListener('pointerdown',e=>{if(!ensureThree())return;const m=pickModule3D(e);lastPointer=pos3d(e);if(m){selected=m.id;const p=intersectGround3D(e);drag3DMode='move';drag3DStart=p;drag3DOrigin={x:m.x,y:m.y};threeControls.enabled=false;stage.classList.add('dragging');renderProps();updateStats();rebuildThree();toast('Módulo seleccionado en 3D')}else{drag3DMode='orbit';threeControls.enabled=true}canvas3d.setPointerCapture(e.pointerId)});
-canvas3d.addEventListener('pointermove',e=>{if(drag3DMode==='move'){const m=modules.find(a=>a.id===selected);const p=intersectGround3D(e);if(m&&p&&drag3DStart){m.x=snap(drag3DOrigin.x+(p.x-drag3DStart.x));m.y=snap(drag3DOrigin.y+(p.y-drag3DStart.y));modules=modules.map(normalizeModule);localStorage.kaynEditorModulos=JSON.stringify({modules});coreSync();renderProps();renderBreakdown();updateStats();setDirty(true);rebuildThree();}}});
+canvas3d.addEventListener('pointerdown',e=>{e.preventDefault();if(!ensureThree())return;const m=pickModule3D(e);lastPointer=pos3d(e);if(m){selected=m.id;const p=intersectGround3D(e);drag3DMode='move';drag3DStart=p;drag3DOrigin={x:m.x,y:m.y};threeControls.enabled=false;stage.classList.add('dragging');renderProps();updateStats();rebuildThree();toast('Módulo seleccionado en 3D')}else{drag3DMode='orbit';threeControls.enabled=true}canvas3d.setPointerCapture(e.pointerId)});
+canvas3d.addEventListener('pointermove',e=>{if(drag3DMode==='move'){e.preventDefault();const m=modules.find(a=>a.id===selected);const p=intersectGround3D(e);if(m&&p&&drag3DStart){m.x=snap(drag3DOrigin.x+(p.x-drag3DStart.x));m.y=snap(drag3DOrigin.y+(p.y-drag3DStart.y));modules=modules.map(normalizeModule);localStorage.kaynEditorModulos=JSON.stringify({modules});coreSync();renderProps();renderBreakdown();updateStats();setDirty(true);rebuildThree();}}});
 canvas3d.addEventListener('pointerup',e=>{drag3DMode=null;threeControls&&(threeControls.enabled=true);stage.classList.remove('dragging');try{canvas3d.releasePointerCapture(e.pointerId)}catch(_){};drawAll();});
 canvas3d.addEventListener('wheel',e=>{}, {passive:true});
 function pos3d(e){const r=canvas3d.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}}
